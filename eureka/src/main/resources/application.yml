@@ -9,5 +9,7 @@ eureka:
   client:
     registerWithEureka: false
     fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://register-server:8848/eureka/
   server:
     waitTimeInMsWhenSyncEmpty: 0

@@ -6,7 +6,7 @@ eureka:
     registerWithEureka: true
     fetchRegistry: true
     serviceUrl:
-      defaultZone: http://localhost:8848/eureka/
+      defaultZone: http://register-server:8848/eureka/
 
 logging:
   level:
@@ -30,9 +30,9 @@ spring:
             scope: mall.read,mall.write
         provider:
           mall:
-            authorization-uri: http://auth-server:9000/oauth2/authorize
-            token-uri: http://auth-server:9000/oauth2/token
-            user-info-uri: http://localhost:8090/user_info
+            authorization-uri: http://auth.flizi.cn:6628/oauth2/authorize
+            token-uri: http://auth.flizi.cn:6628/oauth2/token
+            user-info-uri: http://localhost:6513/user_info
             user-name-attribute: name
   application:
     name: mall

@@ -1,4 +1,4 @@
-package cn.flizi.cloud.upms;
+package cn.flizi.cloud.upms.biz;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

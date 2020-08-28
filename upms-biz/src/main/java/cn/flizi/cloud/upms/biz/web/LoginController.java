@@ -1,24 +1,11 @@
-/*
- * Copyright 2020 the original author or authors.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      https://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-package cn.flizi.cloud.upms.web;
+package cn.flizi.cloud.upms.biz.web;
 
+import cn.flizi.cloud.upms.api.vo.UserInfo;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
@@ -28,7 +15,7 @@ import java.util.HashMap;
  * @since 0.0.1
  */
 @RestController
-public class MessagesController {
+public class LoginController {
 
     @SneakyThrows
     @GetMapping("/user_info")
@@ -37,5 +24,15 @@ public class MessagesController {
         HashMap<String, String> hashMap = new HashMap<>();
         hashMap.put("name", name);
         return new ObjectMapper().writeValueAsString(hashMap);
+    }
+
+    @SneakyThrows
+    @GetMapping("/user/info/{username}")
+    public UserInfo getMessages(@PathVariable String username) {
+        UserInfo userInfo = new UserInfo();
+        userInfo.setId(1);
+        userInfo.setUsername(username);
+        userInfo.setPassword("$2a$10$BK2HGpZVjchJe1HJQUAzVudj8DUhWwNjdS7zEBKFM8RmDjYmbWgLi"); // 123456
+        return userInfo;
     }
 }

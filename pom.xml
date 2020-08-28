@@ -21,7 +21,8 @@
     <modules>
         <module>eureka</module>
         <module>auth</module>
-        <module>upms</module>
+        <module>upms-api</module>
+        <module>upms-biz</module>
         <module>mall</module>
     </modules>
 
@@ -65,6 +66,11 @@
                 <groupId>org.springframework.security.experimental</groupId>
                 <artifactId>spring-security-oauth2-authorization-server</artifactId>
                 <version>${spring-oauth2-authorization-server}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.flizi.cloud</groupId>
+                <artifactId>upms-api</artifactId>
+                <version>${project.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
