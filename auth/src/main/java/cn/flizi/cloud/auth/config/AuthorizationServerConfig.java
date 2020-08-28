@@ -37,7 +37,7 @@ public class AuthorizationServerConfig {
 				.clientSecret("secret")
 				.clientAuthenticationMethod(ClientAuthenticationMethod.BASIC)
 				.authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
-				.redirectUri("http://localhost:8008/mall/login/oauth2/code/mall")
+				.redirectUri(redirectUri)
 				.scope("mall.read")
 				.scope("mall.write")
 				.build();
