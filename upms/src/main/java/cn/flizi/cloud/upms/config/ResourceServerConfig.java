@@ -30,11 +30,9 @@ public class ResourceServerConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .mvcMatcher("/messages/**")
-                .authorizeRequests()
-                .mvcMatchers("/messages/**").access("hasAuthority('SCOPE_message.read')")
+                .authorizeRequests().anyRequest().authenticated()
                 .and()
-                .oauth2ResourceServer().jwt();
+                    .oauth2ResourceServer().jwt();
     }
     // @formatter:on
 }

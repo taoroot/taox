@@ -15,8 +15,13 @@
  */
 package cn.flizi.cloud.upms.web;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.SneakyThrows;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.HashMap;
 
 /**
  * @author Joe Grandja
@@ -25,8 +30,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class MessagesController {
 
-	@GetMapping("/messages")
-	public String[] getMessages() {
-		return new String[] {"Message 1", "Message 2", "Message 3"};
-	}
+    @SneakyThrows
+    @GetMapping("/user_info")
+    public String getMessages() {
+        String name = SecurityContextHolder.getContext().getAuthentication().getName();
+        HashMap<String, String> hashMap = new HashMap<>();
+        hashMap.put("name", name);
+        return new ObjectMapper().writeValueAsString(hashMap);
+    }
 }

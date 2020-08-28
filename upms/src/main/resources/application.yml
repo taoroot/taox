@@ -1,15 +1,24 @@
 server:
-  port: 8090
+  port: 6513
 
 logging:
   level:
     root: INFO
-    org.springframework.web: INFO
-    org.springframework.security: INFO
+    org.springframework.web: DEBUG
+    org.springframework.security: DEBUG
     org.springframework.security.oauth2: DEBUG
 #    org.springframework.boot.autoconfigure: DEBUG
 
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8848/eureka/
+
 spring:
+  application:
+    name: upms
   security:
     oauth2:
       resourceserver:

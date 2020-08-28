@@ -26,29 +26,28 @@ import java.util.UUID;
 @Import(OAuth2AuthorizationServerConfiguration.class)
 public class AuthorizationServerConfig {
 
-	// @formatter:off
+    // @formatter:off
 	@Bean
 	public RegisteredClientRepository registeredClientRepository() {
 		RegisteredClient registeredClient = RegisteredClient.withId(UUID.randomUUID().toString())
-				.clientId("messaging-client")
+				.clientId("mall")
 				.clientSecret("secret")
 				.clientAuthenticationMethod(ClientAuthenticationMethod.BASIC)
 				.authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
-				.authorizationGrantType(AuthorizationGrantType.CLIENT_CREDENTIALS)
-				.redirectUri("http://localhost:8080/authorized")
-				.scope("message.read")
-				.scope("message.write")
+				.redirectUri("http://localhost:8080/login/oauth2/code/mall")
+				.scope("mall.read")
+				.scope("mall.write")
 				.build();
 		return new InMemoryRegisteredClientRepository(registeredClient);
 	}
 	// @formatter:on
 
-	@Bean
-	public KeyManager keyManager() {
-		return new StaticKeyGeneratingKeyManager();
-	}
+    @Bean
+    public KeyManager keyManager() {
+        return new StaticKeyGeneratingKeyManager();
+    }
 
-	// @formatter:off
+    // @formatter:off
 	@Bean
 	public UserDetailsService users() {
 		UserDetails user = User.withDefaultPasswordEncoder()

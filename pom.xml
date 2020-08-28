@@ -19,6 +19,7 @@
     </properties>
 
     <modules>
+        <module>eureka</module>
         <module>auth</module>
         <module>upms</module>
         <module>mall</module>
