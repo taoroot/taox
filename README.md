@@ -7,9 +7,13 @@ host 配置:
 # 启动顺序
 
 EurekaApplication :8848/
+
 GatewayApplication :8008/
+
 UpmsApplication :6513/
+
 AuthApplication :6628/
+
 MallApplication :8800/
 
 # 然后访问 
