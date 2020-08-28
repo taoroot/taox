@@ -29,6 +29,10 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
+        <dependency>
+            <groupId>cn.flizi.cloud</groupId>
+            <artifactId>common-security</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

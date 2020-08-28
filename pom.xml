@@ -19,6 +19,7 @@
     </properties>
 
     <modules>
+        <module>common</module>
         <module>eureka</module>
         <module>gateway</module>
         <module>auth</module>
@@ -71,6 +72,11 @@
             <dependency>
                 <groupId>cn.flizi.cloud</groupId>
                 <artifactId>upms-api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.flizi.cloud</groupId>
+                <artifactId>common-security</artifactId>
                 <version>${project.version}</version>
             </dependency>
         </dependencies>

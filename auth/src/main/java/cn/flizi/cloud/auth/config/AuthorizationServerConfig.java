@@ -25,14 +25,15 @@ import java.util.UUID;
 @Import(OAuth2AuthorizationServerConfiguration.class)
 public class AuthorizationServerConfig {
 
-	@Value("${temp.redirect_uri}")
-	private String redirectUri;
+    @Value("${temp.redirect_uri}")
+    private String redirectUri;
 
     // @formatter:off
 	@Bean
 	public RegisteredClientRepository registeredClientRepository() {
 
-		RegisteredClient registeredClient = RegisteredClient.withId(UUID.randomUUID().toString())
+		RegisteredClient registeredClient = RegisteredClient
+				.withId(UUID.randomUUID().toString())
 				.clientId("mall")
 				.clientSecret("secret")
 				.clientAuthenticationMethod(ClientAuthenticationMethod.BASIC)
