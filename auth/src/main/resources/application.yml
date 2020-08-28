@@ -1,5 +1,5 @@
 server:
-  port: 6110
+  port: 6628
 
 spring:
   application:
@@ -7,18 +7,16 @@ spring:
 
 eureka:
   client:
-    registerWithEureka: true
-    fetchRegistry: true
     serviceUrl:
       defaultZone: http://register-server:8848/eureka/
 
 logging:
   level:
     root: INFO
-    org.springframework.web: INFO
-    org.springframework.security: INFO
+    org.springframework.web: DEBUG
+    org.springframework.security: DEBUG
     org.springframework.security.oauth2: DEBUG
 #    org.springframework.boot.autoconfigure: DEBUG
 
 temp:
-  redirect_uri: http://localhost:8800/login/oauth2/code/mall
+  redirect_uri: http://localhost:8008/mall/login/oauth2/code/mall

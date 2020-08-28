@@ -11,8 +11,6 @@ logging:
 
 eureka:
   client:
-    registerWithEureka: true
-    fetchRegistry: true
     serviceUrl:
       defaultZone: http://register-server:8848/eureka/
 

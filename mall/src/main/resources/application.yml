@@ -1,5 +1,6 @@
 server:
-  port: 8800
+  port: 6110
+
 
 eureka:
   client:
@@ -26,7 +27,7 @@ spring:
             client-id: mall
             client-secret: secret
             authorization-grant-type: authorization_code
-            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+            redirect-uri: "http://localhost:8008/{registrationId}/login/oauth2/code/{registrationId}" # 必须和auth一模一样!!
             scope: mall.read,mall.write
         provider:
           mall:

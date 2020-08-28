@@ -25,7 +25,7 @@ import java.util.UUID;
 @Import(OAuth2AuthorizationServerConfiguration.class)
 public class AuthorizationServerConfig {
 
-	@Value("temp.redirect_uri")
+	@Value("${temp.redirect_uri}")
 	private String redirectUri;
 
     // @formatter:off
@@ -37,7 +37,7 @@ public class AuthorizationServerConfig {
 				.clientSecret("secret")
 				.clientAuthenticationMethod(ClientAuthenticationMethod.BASIC)
 				.authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
-				.redirectUri(redirectUri)
+				.redirectUri("http://localhost:8008/mall/login/oauth2/code/mall")
 				.scope("mall.read")
 				.scope("mall.write")
 				.build();
