@@ -23,4 +23,4 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          jwk-set-uri: http://auth.flizi.cn:6628/oauth2/jwks
+          jwk-set-uri: http://auth-server:6628/oauth2/jwks

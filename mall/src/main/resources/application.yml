@@ -30,8 +30,8 @@ spring:
             scope: mall.read,mall.write
         provider:
           mall:
-            authorization-uri: http://auth.flizi.cn:6628/oauth2/authorize
-            token-uri: http://auth.flizi.cn:6628/oauth2/token
+            authorization-uri: http://auth-server:6628/oauth2/authorize
+            token-uri: http://auth-server:6628/oauth2/token
             user-info-uri: http://localhost:6513/user_info
             user-name-attribute: name
   application:

@@ -1,5 +1,6 @@
 package cn.flizi.cloud.auth.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -24,15 +25,19 @@ import java.util.UUID;
 @Import(OAuth2AuthorizationServerConfiguration.class)
 public class AuthorizationServerConfig {
 
+	@Value("temp.redirect_uri")
+	private String redirectUri;
+
     // @formatter:off
 	@Bean
 	public RegisteredClientRepository registeredClientRepository() {
+
 		RegisteredClient registeredClient = RegisteredClient.withId(UUID.randomUUID().toString())
 				.clientId("mall")
 				.clientSecret("secret")
 				.clientAuthenticationMethod(ClientAuthenticationMethod.BASIC)
 				.authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
-				.redirectUri("http://localhost:8800/login/oauth2/code/mall")
+				.redirectUri(redirectUri)
 				.scope("mall.read")
 				.scope("mall.write")
 				.build();

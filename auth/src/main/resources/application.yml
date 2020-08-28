@@ -1,5 +1,5 @@
 server:
-  port: 6628
+  port: 6110
 
 spring:
   application:
@@ -19,3 +19,6 @@ logging:
     org.springframework.security: INFO
     org.springframework.security.oauth2: DEBUG
 #    org.springframework.boot.autoconfigure: DEBUG
+
+temp:
+  redirect_uri: http://localhost:8800/login/oauth2/code/mall
