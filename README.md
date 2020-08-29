@@ -22,7 +22,7 @@ host 配置:
 
 # 启动顺序
 
-| Microservice  | Port | DESC |
+| Microservice  | Port | Desc |
 | ----------- | ----------- | ----------- | 
 | EurekaApplication   | 8848       | 注册中心
 | GatewayApplication  | 8008      | 网关

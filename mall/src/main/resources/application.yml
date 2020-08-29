@@ -20,6 +20,9 @@ logging:
 spring:
   security:
     oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://auth-server:6628/oauth2/jwks
       client:
         registration:
           mall:
@@ -27,13 +30,16 @@ spring:
             client-id: mall
             client-secret: secret
             authorization-grant-type: authorization_code
-            redirect-uri: "http://localhost:8008/{registrationId}/login/oauth2/code/{registrationId}" # 必须和auth一模一样!!
+            # 必须和auth-server中设置 一模一样!!
+            redirect-uri: "http://localhost:8008/{registrationId}/login/oauth2/code/{registrationId}"
             scope: mall.read,mall.write
         provider:
           mall:
+            # 对外的授权服务中心地址
             authorization-uri: http://auth-server:6628/oauth2/authorize
             token-uri: http://auth-server:6628/oauth2/token
-            user-info-uri: http://localhost:6513/user_info
+            # 写网关下的暴露地址
+            user-info-uri: http://localhost:8008/upms/check_token
             user-name-attribute: name
   application:
     name: mall

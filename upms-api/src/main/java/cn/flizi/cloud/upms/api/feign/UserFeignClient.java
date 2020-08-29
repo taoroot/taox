@@ -8,6 +8,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 @FeignClient("upms")
 public interface UserFeignClient {
 
-    @GetMapping("/user/info/{username}")
+    @GetMapping(value = "/user/info/{username}", headers = "internal")
     UserInfo info(@PathVariable("username") String username);
 }
