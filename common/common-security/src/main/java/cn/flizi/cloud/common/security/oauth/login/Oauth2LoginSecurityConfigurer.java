@@ -30,9 +30,13 @@ public class Oauth2LoginSecurityConfigurer extends WebSecurityConfigurerAdapter 
     protected void configure(HttpSecurity http) throws Exception {
 
         http
+                .csrf().disable()
                 // 授权登录
                 .oauth2Login(config -> config.successHandler(successHandler)
-                        .authorizationEndpoint(this::authorizationEndpoint));
+                        .authorizationEndpoint(this::authorizationEndpoint))
+                // 退出登录
+                .logout(config -> config.logoutSuccessHandler(new CustomLogoutSuccessHandler()))
+        ;
     }
 
     /**

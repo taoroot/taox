@@ -40,8 +40,8 @@ export function getUserSocial() {
 
 export function logout() {
   return request({
-    url: '/logout',
-    method: 'delete'
+    url: '/mall/logout',
+    method: 'post'
   })
 }
 

@@ -13,9 +13,11 @@
         <spring-boot.version>2.3.2.RELEASE</spring-boot.version>
         <spring-cloud.version>Hoxton.SR7</spring-cloud.version>
         <spring-oauth2-authorization-server>0.0.1</spring-oauth2-authorization-server>
+        <mybatis-plus.version>3.3.2</mybatis-plus.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <maven-plugin.version>3.8.1</maven-plugin.version>
     </properties>
 
     <modules>
@@ -70,6 +72,16 @@
                 <version>${spring-oauth2-authorization-server}</version>
             </dependency>
             <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-extension</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-annotation</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>cn.flizi.cloud</groupId>
                 <artifactId>upms-api</artifactId>
                 <version>${project.version}</version>
@@ -100,6 +112,7 @@
                 <plugin>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>
+                    <version>${spring-boot.version}</version>
                     <executions>
                         <execution>
                             <goals>
@@ -113,6 +126,7 @@
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-plugin.version}</version>
                 <configuration>
                     <target>${maven.compiler.target}</target>
                     <source>${maven.compiler.source}</source>

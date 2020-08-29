@@ -36,7 +36,7 @@ public class LoginController {
     @GetMapping(value = "/user_info")
     public String userInfo() {
         String result =
-        "{\"code\":0,\"data\":{\"functions\":[],\"roles\":[{\"id\":1,\"name\":\"普通角色\",\"role\":\"ROLE_USER\",\"description\":\"\",\"scope\":null,\"scopeType\":\"ALL\"," +
+        "{\"code\":0,\"datascope\":{\"functions\":[],\"roles\":[{\"id\":1,\"name\":\"普通角色\",\"role\":\"ROLE_USER\",\"description\":\"\",\"scope\":null,\"scopeType\":\"ALL\"," +
                 "\"createTime\":\"2020-08-18T11:36:19\",\"updateTime\":\"2020-08-26T08:46:15\",\"authorities\":null},{\"id\":2,\"name\":\"个人角色\",\"role\":\"ROLE_OWN\",\"" +
                 "description\":\"\",\"scope\":null,\"scopeType\":\"OWN\",\"createTime\":\"2020-08-27T08:40:44\",\"updateTime\":null,\"authorities\":null}],\"dept\":\"软件一部\"," +
                 "\"menus\":[{\"id\":1000,\"parentId\":-1,\"weight\":1,\"name\":null,\"path\":\"/system\",\"hidden\":false,\"alwaysShow\":false,\"redirect\":\"/authority/index\"" +

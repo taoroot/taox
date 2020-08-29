@@ -14,6 +14,9 @@
 	<packaging>jar</packaging>
 
 	<dependencies>
-
+		<dependency>
+			<groupId>com.baomidou</groupId>
+			<artifactId>mybatis-plus-annotation</artifactId>
+		</dependency>
 	</dependencies>
 </project>

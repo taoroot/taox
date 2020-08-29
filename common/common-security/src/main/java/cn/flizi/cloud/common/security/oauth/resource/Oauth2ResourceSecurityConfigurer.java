@@ -32,6 +32,7 @@ public class Oauth2ResourceSecurityConfigurer extends WebSecurityConfigurerAdapt
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+                .csrf().disable()
                 // 白名单,不需要登录也可以访问
                 .authorizeRequests(registry -> {
                     permitAllUrls(registry, http.getSharedObject(ApplicationContext.class));

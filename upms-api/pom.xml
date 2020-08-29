@@ -17,5 +17,13 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-extension</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>cn.flizi.cloud</groupId>
+            <artifactId>common-core</artifactId>
+        </dependency>
     </dependencies>
 </project>
