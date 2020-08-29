@@ -1,22 +1,38 @@
 # taox
 
+| Dependency | Version |
+| ----------- | ----------- |
+| Spring Boot   | 2.3.2.RELEASE       |
+| Spring Cloud   | Hoxton.SR7        |
+| Spring Security | 5.3.3.RELEASE        |
+| Spring Security OAuth2 Authorization Server   | 0.0.1 |
+
+特点:
+
+采用新出的 `Authorization Server` 
+
+
+# 使用
+
 host 配置:
 
+```java
 127.0.0.1 auth-server register-server
+```
 
 # 启动顺序
 
-EurekaApplication :8848/
+| Microservice  | Port | DESC |
+| ----------- | ----------- | ----------- | 
+| EurekaApplication   | 8848       | 注册中心
+| GatewayApplication  | 8008      | 网关
+| UpmsApplication | 6513        | 通用用户权限管理系统
+| AuthApplication   | 6628| 统一认证中心 |
+| MallApplication   | 8800| 测试应用 |
 
-GatewayApplication :8008/
+# 访问地址 
 
-UpmsApplication :6513/
-
-AuthApplication :6628/
-
-MallApplication :8800/
-
-# 然后访问 
-
-127.0.0.1:8008/mall
+```
+127.0.0.1:8008/mall/oauth2/authorization/mall?redirect_uri=http://localhost:8081/
+```
 
