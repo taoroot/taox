@@ -2,9 +2,7 @@
 
 # 特点:
 
-- 基于新的 `OAuth2 Authorization Server` 
-
-- 基于 OAuth2 实现单点登录
+- 基于新的 `Spring Security OAuth2 Authorization Server` 实现单点登录
   - 支持密码登录
   - 支持第三方OAuth2授权登录
     - github(已支持)
@@ -12,7 +10,7 @@
     - 微信开放平台(适配中)
     - QQ(适配中)
   - 支持短信登录(计划中)
-  
+   
 
 [线上预览地址](http://mall.flizi.cn) 
 
@@ -46,7 +44,7 @@ host 配置:
 | EurekaApplication   | 8848       | 注册中心
 | GatewayApplication  | 8008      | 网关
 | UpmsApplication | 6513        | 通用用户权限管理系统(开发中)
-| AuthApplication   | 6628| 统一认证中心[密码登录, 第三方应用Oauth2授权登录] |
+| AuthApplication   | 6628| 统一认证中心|
 | MallApplication   | 8800| 测试应用 |
 
 
