@@ -6,9 +6,9 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
-@TableName("role_authority")
+@TableName("upms_role_authority")
 @EqualsAndHashCode(callSuper = true)
-public class SysRoleAuthority extends Model<SysRoleAuthority> {
+public class UpmsRoleAuthority extends Model<UpmsRoleAuthority> {
 
 	private static final long serialVersionUID = 1L;
 

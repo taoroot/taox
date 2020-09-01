@@ -25,10 +25,10 @@ import lombok.EqualsAndHashCode;
  * activeMenu: '/example/list'  if set path, the sidebar will highlight the path you set
  * }
  */
-@TableName("sys_authority")
+@TableName("upms_authority")
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class SysAuthority extends Model<SysAuthority> {
+public class UpmsAuthority extends Model<UpmsAuthority> {
 
     @TableId(type = IdType.INPUT)
     private Integer id;

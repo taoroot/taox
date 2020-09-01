@@ -18,7 +18,7 @@ public class RemoteUserDetailService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserInfo info = userFeignClient.info(username);
+        UserInfo info = userFeignClient.getInfoByUsername(username);
         if (info != null) {
             return new User(info.getUsername(),
                     info.getPassword(),

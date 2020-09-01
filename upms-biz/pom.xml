@@ -23,12 +23,24 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+        <dependency>
             <groupId>cn.flizi.cloud</groupId>
             <artifactId>upms-api</artifactId>
         </dependency>
         <dependency>
             <groupId>cn.flizi.cloud</groupId>
             <artifactId>common-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>cn.flizi.cloud</groupId>
+            <artifactId>common-mybatis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-core</artifactId>
         </dependency>
     </dependencies>
 

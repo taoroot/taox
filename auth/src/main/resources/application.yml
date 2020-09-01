@@ -10,33 +10,30 @@ spring:
     oauth2:
       client:
         registration:
+          #  内置 github provider
           github:
             client-id: xxxx
             client-secret: xxxx
-#          gitee:
-#            client-id: xxxx
-#            client-secret: xxxx
-#            authorization-grant-type: authorization_code
-#            redirect-uri: https://xxx/login/oauth2/code/gitea
-#          wechat:
-#            client-id: xxx
-#            client-secret: xxxx
-#            authorization-grant-type: authorization_code
-#            redirect-uri: https://xxx/login/oauth2/code/wx
-#            scope: snsapi_login
-#            client-authentication-method: post
-#          qq:
-#            client-id: xxx
-#            client-secret: xxxx
-#            authorization-grant-type: authorization_code
-#            redirect-uri: https://xxx/login/oauth2/code/qq
-#            scope: get_user_info
-#            client-authentication-method: post
+          gitee:
+            client-id: xxxx
+            client-secret: xxxx
+            authorization-grant-type: authorization_code
+            redirect-uri: https://xxx/login/oauth2/code/gitea
+          wechat:
+            client-id: xxx
+            client-secret: xxxx
+            authorization-grant-type: authorization_code
+            redirect-uri: https://xxx/login/oauth2/code/wx
+            scope: snsapi_login
+            client-authentication-method: post
+          qq:
+            client-id: xxx
+            client-secret: xxxx
+            authorization-grant-type: authorization_code
+            redirect-uri: https://xxx/login/oauth2/code/qq
+            scope: get_user_info
+            client-authentication-method: post
         provider:
-          gitea:
-            authorization-uri: https://gitea.com/login/oauth/authorize
-            token-uri: https://gitea.com/login/oauth/access_token
-            user-info-uri: https://gitea.com/api/v1/user
           gitee:
             authorization-uri: https://gitee.com/oauth/authorize
             token-uri: https://gitee.com/oauth/token

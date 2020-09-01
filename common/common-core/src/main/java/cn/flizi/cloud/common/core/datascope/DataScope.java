@@ -8,20 +8,29 @@ import java.util.List;
 
 @Data
 public class DataScope implements Serializable {
-
     /**
      * 限制范围为部门时字段名称
      */
-    private String scopeAlias = "dept_id";
+    private String scopeName = "dept_id";
     /**
      * 当权限范围本用户时字段名称
      */
-    private String scopeOwnAlias = "user_id";
+    private String scopeOwnName = "user_id";
+
+    /**
+     * 当前用户ID
+     */
+    private Integer userId;
 
     /**
      * 具体的数据范围
      */
-    private List<Integer> scopes = new ArrayList<>();
+    private List<Integer> deptIds = new ArrayList<>();
+
+    /**
+     * 基于角色
+     */
+    private List<String> roleIds = new ArrayList<>();
 
     /**
      * 默认查询所有

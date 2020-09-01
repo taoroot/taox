@@ -14,10 +14,10 @@ import lombok.NoArgsConstructor;
  * Date: 2020/2/10
  */
 @Data
-@TableName("sys_user")
+@TableName("upms_user")
 @NoArgsConstructor
 @AllArgsConstructor
-public class SysUser extends Model<SysUser> {
+public class UpmsUser extends Model<UpmsUser> {
 
     @TableId(type = IdType.AUTO)
     private Integer id;

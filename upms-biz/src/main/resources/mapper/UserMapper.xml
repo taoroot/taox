@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.flizi.cloud.upms.biz.mapper.UserMapper">
+
+    <resultMap id="SysUserPageVO" type="cn.flizi.cloud.upms.api.entity.UpmsUser">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="username" jdbcType="VARCHAR" property="username"/>
+        <result column="nickname" jdbcType="VARCHAR" property="nickname"/>
+        <result column="enabled" jdbcType="BOOLEAN" property="enabled"/>
+        <result column="phone" jdbcType="VARCHAR" property="phone"/>
+        <result column="avatar" jdbcType="VARCHAR" property="avatar"/>
+        <result column="dept_id" jdbcType="INTEGER" property="deptId"/>
+        <collection property="roles" column="{userId=id}" select="roleIds"/>
+    </resultMap>
+
+    <select id="roleIds" resultType="java.lang.Integer">
+        select r.id
+        from upms_user_role ur,
+             upms_role r
+        where r.id = ur.role_id
+          AND ur.user_id = #{userId};
+    </select>
+
+    <select id="roles" resultType="cn.flizi.cloud.upms.api.entity.UpmsRole">
+        select r.*
+        from upms_user_role ur,
+             upms_role r
+        where r.id = ur.role_id
+          AND ur.user_id = #{userId};
+    </select>
+
+
+    <select id="authorities" resultType="cn.flizi.cloud.upms.api.entity.UpmsAuthority">
+        select distinct a.*
+        from upms_authority a,
+        upms_role_authority ar
+        where a.id = ar.authority_id
+        <if test="type != null">
+            and a.type = #{type}
+        </if>
+        and ar.role_id in (
+        select r.id
+        from upms_user_role ur,
+        upms_role r
+        where r.id = ur.role_id
+        AND ur.user_id = #{userId}
+        )
+    </select>
+
+    <select id="getPage" resultMap="SysUserPageVO">
+        select u.*, d.name as dept_name
+        from upms_user u
+                 left join upms_dept d on d.id = u.dept_id
+        <where>
+            <if test="username != null and username != ''">
+                and u.username = #{username}
+            </if>
+            <if test="phone != null and phone != ''">
+                and u.phone = #{phone}
+            </if>
+            <if test="enabled != null ">
+                and u.enabled = #{enabled}
+            </if>
+            <if test="deptId != null">
+                and u.dept_id = #{deptId}
+            </if>
+        </where>
+    </select>
+
+</mapper>

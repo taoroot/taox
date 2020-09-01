@@ -18,7 +18,8 @@ import java.util.HashMap;
 public class LoginController {
 
     /**
-     * 对外使用,需要token
+     * 特供 oauth2Login 使用, 根据 token 放回用户信息
+     * todo 兼容原来的 Security OAuth 2.0
      */
     @SneakyThrows
     @GetMapping(value = "/check_token")
@@ -30,7 +31,22 @@ public class LoginController {
     }
 
     /**
-     * 对外使用,需要token
+     * 特供 Auth-Server 服务密码登录,不需要 token
+     * @param username 用户登录账号
+     */
+    @NotAuth
+    @SneakyThrows
+    @GetMapping(value = "/user/user/{username}")
+    public UserInfo getMessages(@PathVariable String username) {
+        UserInfo userInfo = new UserInfo();
+        userInfo.setId(1);
+        userInfo.setUsername(username);
+        userInfo.setPassword("$2a$10$BK2HGpZVjchJe1HJQUAzVudj8DUhWwNjdS7zEBKFM8RmDjYmbWgLi"); // 123456
+        return userInfo;
+    }
+
+    /**
+     * 前端应该用这个
      */
     @SneakyThrows
     @GetMapping(value = "/user_info")
@@ -46,20 +62,5 @@ public class LoginController {
 
         // 查询用户个人信息
         return result;
-    }
-
-    /**
-     * 对内使用,不需要 token
-     * @param username
-     */
-    @NotAuth
-    @SneakyThrows
-    @GetMapping(value = "/user/info/{username}")
-    public UserInfo getMessages(@PathVariable String username) {
-        UserInfo userInfo = new UserInfo();
-        userInfo.setId(1);
-        userInfo.setUsername(username);
-        userInfo.setPassword("$2a$10$BK2HGpZVjchJe1HJQUAzVudj8DUhWwNjdS7zEBKFM8RmDjYmbWgLi"); // 123456
-        return userInfo;
     }
 }

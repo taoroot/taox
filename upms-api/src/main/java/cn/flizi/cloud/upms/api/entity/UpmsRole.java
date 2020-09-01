@@ -14,9 +14,9 @@ import org.apache.ibatis.type.JdbcType;
 import java.time.LocalDateTime;
 
 @Data
-@TableName("sys_role")
+@TableName("upms_role")
 @EqualsAndHashCode(callSuper = true)
-public class SysRole extends Model<SysRole> {
+public class UpmsRole extends Model<UpmsRole> {
     private static final long serialVersionUID = 1L;
 
     @TableId(type = IdType.AUTO)

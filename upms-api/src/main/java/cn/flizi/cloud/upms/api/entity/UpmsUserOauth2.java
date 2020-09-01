@@ -10,9 +10,9 @@ import lombok.EqualsAndHashCode;
 import java.time.LocalDateTime;
 
 @Data
-@TableName("sys_user_oauth2")
+@TableName("upms_user_oauth2")
 @EqualsAndHashCode(callSuper = true)
-public class SysUserOauth2 extends Model<SysUserOauth2> {
+public class UpmsUserOauth2 extends Model<UpmsUserOauth2> {
     @TableId(type = IdType.AUTO)
     private Integer id;
     private String clientRegistrationId;

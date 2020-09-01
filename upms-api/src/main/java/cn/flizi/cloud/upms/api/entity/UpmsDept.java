@@ -13,8 +13,8 @@ import java.time.LocalDateTime;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName(value = "sys_dept")
-public class SysDept extends Model<SysDept> {
+@TableName(value = "upms_dept")
+public class UpmsDept extends Model<UpmsDept> {
 
     @TableId(type = IdType.AUTO)
     private Integer id;
