@@ -2,7 +2,7 @@ import request from '@/utils/request'
 
 export function getDepts(params) {
   return request({
-    url: '/depts',
+    url: '/upms/depts',
     method: 'get',
     params
   })
@@ -10,7 +10,7 @@ export function getDepts(params) {
 
 export function delDepts(ids) {
   return request({
-    url: `/dept`,
+    url: `/upms/dept`,
     method: 'delete',
     params: {
       ids: ids
@@ -20,7 +20,7 @@ export function delDepts(ids) {
 
 export function createDept(data) {
   return request({
-    url: '/dept',
+    url: '/upms/dept',
     method: 'post',
     data
   })
@@ -28,7 +28,7 @@ export function createDept(data) {
 
 export function updateDept(data) {
   return request({
-    url: `/dept`,
+    url: `/upms/dept`,
     method: 'put',
     data
   })

@@ -28,14 +28,14 @@ public class UpmsRole extends Model<UpmsRole> {
 
     private String description;
 
-    @TableField(typeHandler = JacksonTypeHandler.class, jdbcType = JdbcType.ARRAY)
-    private Integer[] scope;
-
     private DataScopeTypeEnum scopeType;
 
     private LocalDateTime createTime;
 
     private LocalDateTime updateTime;
+
+    @TableField(typeHandler = JacksonTypeHandler.class, jdbcType = JdbcType.ARRAY)
+    private Integer[] scope;
 
     @TableField(exist = false)
     private Integer[] authorities;

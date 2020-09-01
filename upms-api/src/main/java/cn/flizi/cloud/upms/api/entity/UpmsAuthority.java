@@ -30,6 +30,9 @@ import lombok.EqualsAndHashCode;
 @Data
 public class UpmsAuthority extends Model<UpmsAuthority> {
 
+    public static final int FUN = 1;
+    public static final int MENU = 2;
+
     @TableId(type = IdType.INPUT)
     private Integer id;
 

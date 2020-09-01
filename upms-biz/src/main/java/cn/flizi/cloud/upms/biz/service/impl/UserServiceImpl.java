@@ -7,6 +7,7 @@ import cn.flizi.cloud.common.security.SecurityUtils;
 import cn.flizi.cloud.upms.api.entity.UpmsAuthority;
 import cn.flizi.cloud.upms.api.entity.UpmsUser;
 import cn.flizi.cloud.upms.api.entity.UpmsUserRole;
+import cn.flizi.cloud.upms.api.vo.AuthUserInfoVo;
 import cn.flizi.cloud.upms.biz.mapper.DeptMapper;
 import cn.flizi.cloud.upms.biz.mapper.UserMapper;
 import cn.flizi.cloud.upms.biz.mapper.UserRoleMapper;
@@ -96,5 +97,24 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UpmsUser> implement
         }
 
         return R.ok();
+    }
+
+    @Override
+    public AuthUserInfoVo getAuthUserByUsername(String username) {
+        AuthUserInfoVo userInfo = new AuthUserInfoVo();
+
+        UpmsUser user = userMapper.selectOne(Wrappers.<UpmsUser>lambdaQuery()
+                .eq(UpmsUser::getUsername, username));
+
+        if (user == null) {
+            return null;
+        }
+
+        userInfo.setId(user.getId());
+        userInfo.setUsername(user.getUsername());
+        userInfo.setPassword(user.getPassword());
+        userInfo.setRoles(userMapper.roleNames(user.getId()).toArray(new String[0]));
+        userInfo.setAuthorities(userMapper.authorityNames(user.getId(), UpmsAuthority.FUN).toArray(new String[0]));
+        return userInfo;
     }
 }

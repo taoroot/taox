@@ -22,7 +22,11 @@ public interface UserMapper extends BaseMapper<UpmsUser> {
 
     List<UpmsRole> roles(@Param("userId") Integer userId);
 
+    List<String> roleNames(@Param("userId") Integer userId);
+
     List<UpmsAuthority> authorities(@Param("userId") Integer userId, @Param("type") Integer type);
+
+    List<String> authorityNames(@Param("userId") Integer userId, @Param("type") Integer type);
 
     IPage<UpmsUser> getPage(@Param("page") Page<UpmsUser> page, @Param("dataScope") DataScope dataScope,
                             @Param("username") String username,

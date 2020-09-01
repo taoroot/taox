@@ -12,6 +12,7 @@ import org.springframework.http.converter.FormHttpMessageConverter;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.annotation.web.configurers.oauth2.client.OAuth2LoginConfigurer;
 import org.springframework.security.oauth2.client.endpoint.DefaultAuthorizationCodeTokenResponseClient;
 import org.springframework.security.oauth2.client.http.OAuth2ErrorResponseErrorHandler;
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
@@ -48,12 +49,12 @@ public class CustomOAuth2AuthorizationServerConfiguration extends WebSecurityCon
     // @formatter:on
 
 
-    private void authorizationEndpoint(org.springframework.security.config.annotation.web.configurers.oauth2.client.OAuth2LoginConfigurer<HttpSecurity>.AuthorizationEndpointConfig authorization) {
+    // 解决第三方授权登录兼容性问题
+    private void authorizationEndpoint(OAuth2LoginConfigurer<HttpSecurity>.AuthorizationEndpointConfig authorization) {
         authorization.authorizationRequestResolver(new CustomOAuth2AuthorizationRequestResolver(clientRegistrationRepository,
                 OAuth2AuthorizationRequestRedirectFilter.DEFAULT_AUTHORIZATION_REQUEST_BASE_URI));
     }
-
-    private void tokenEndpoint(org.springframework.security.config.annotation.web.configurers.oauth2.client.OAuth2LoginConfigurer<HttpSecurity>.TokenEndpointConfig tokenEndpoint) {
+    private void tokenEndpoint(OAuth2LoginConfigurer<HttpSecurity>.TokenEndpointConfig tokenEndpoint) {
         DefaultAuthorizationCodeTokenResponseClient client = new DefaultAuthorizationCodeTokenResponseClient();
         client.setRequestEntityConverter(new CustomOAuth2AuthorizationCodeGrantRequestEntityConverter());
         OAuth2AccessTokenResponseHttpMessageConverter oAuth2AccessTokenResponseHttpMessageConverter = new OAuth2AccessTokenResponseHttpMessageConverter();
@@ -67,8 +68,7 @@ public class CustomOAuth2AuthorizationServerConfiguration extends WebSecurityCon
         client.setRestOperations(restTemplate);
         tokenEndpoint.accessTokenResponseClient(client);
     }
-
-    private void userInfoEndpoint(org.springframework.security.config.annotation.web.configurers.oauth2.client.OAuth2LoginConfigurer<HttpSecurity>.UserInfoEndpointConfig userInfo) {
+    private void userInfoEndpoint(OAuth2LoginConfigurer<HttpSecurity>.UserInfoEndpointConfig userInfo) {
         List<OAuth2UserService<OAuth2UserRequest, OAuth2User>> userServices = new ArrayList<>();
 
         Map<String, Class<? extends OAuth2User>> customUserTypes = new HashMap<>();

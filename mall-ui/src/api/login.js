@@ -23,17 +23,9 @@ export function getInfo() {
   })
 }
 
-export function getSms(params) {
-  return request({
-    url: '/code/sms',
-    method: 'get',
-    params
-  })
-}
-
 export function getUserSocial() {
   return request({
-    url: '/user_socials',
+    url: '/upms/user_socials',
     method: 'get'
   })
 }
@@ -47,21 +39,21 @@ export function logout() {
 
 export function getUserProfile() {
   return request({
-    url: '/user_info',
+    url: '/upms/user_info',
     method: 'get'
   })
 }
 
 export function unbindUserSocial(id) {
   return request({
-    url: `/user_social/${id}`,
+    url: `/upms/user_social/${id}`,
     method: 'delete'
   })
 }
 
 export function updateUser(data) {
   return request({
-    url: `/user_info`,
+    url: `/upms/user_info`,
     method: 'put',
     data
   })
@@ -69,7 +61,7 @@ export function updateUser(data) {
 
 export function resetPassword(data) {
   return request({
-    url: `/user_password`,
+    url: `/upms/user_password`,
     method: 'put',
     data
   })

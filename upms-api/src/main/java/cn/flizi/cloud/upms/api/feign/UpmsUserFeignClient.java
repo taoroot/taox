@@ -1,18 +1,18 @@
 package cn.flizi.cloud.upms.api.feign;
 
-import cn.flizi.cloud.upms.api.vo.UserInfo;
+import cn.flizi.cloud.upms.api.vo.AuthUserInfoVo;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 @FeignClient("upms")
-public interface UserFeignClient {
+public interface UpmsUserFeignClient {
 
     /**
      * 通过用户名查找用户信息
      */
-    @GetMapping(value = "/user/info/{username}", headers = "internal")
-    UserInfo getInfoByUsername(@PathVariable("username") String username);
+    @GetMapping(value = "/auth/pass/{username}")
+    AuthUserInfoVo getInfoByUsername(@PathVariable("username") String username);
 
 //    /**
 //     * 通过社交账号查找用户信息

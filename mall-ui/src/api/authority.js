@@ -2,7 +2,7 @@ import request from '@/utils/request'
 
 export const getAuthorities = (params) => {
   return request({
-    url: '/authorities',
+    url: '/upms/authorities',
     method: 'get',
     params
   })
@@ -11,7 +11,7 @@ export const getAuthorities = (params) => {
 // 保存
 export const saveAuthority = (data) => {
   return request({
-    url: '/authority',
+    url: '/upms/authority',
     method: 'post',
     data: data
   })
@@ -19,14 +19,14 @@ export const saveAuthority = (data) => {
 // 删除
 export const delItem = (id) => {
   return request({
-    url: '/authority/' + id,
+    url: '/upms/authority/' + id,
     method: 'delete'
   })
 }
 // 查询
 export const getAuthorityById = (id) => {
   return request({
-    url: `/authority/${id}`,
+    url: `/upms/authority/${id}`,
     method: 'get'
   })
 }
@@ -34,15 +34,7 @@ export const getAuthorityById = (id) => {
 // 获取路由
 export const getRouters = () => {
   return request({
-    url: '/authority',
-    method: 'get'
-  })
-}
-
-// 获取菜单列表
-export const getAuthoritys = () => {
-  return request({
-    url: '/authority/getAuthoritys',
+    url: '/upms/authority',
     method: 'get'
   })
 }
@@ -50,7 +42,7 @@ export const getAuthoritys = () => {
 // 更新菜单
 export function updateItem(data) {
   return request({
-    url: '/authority',
+    url: '/upms/authority',
     method: 'put',
     data: data
   })
