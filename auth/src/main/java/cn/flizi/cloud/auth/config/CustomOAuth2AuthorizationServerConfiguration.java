@@ -9,6 +9,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.FormHttpMessageConverter;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.oauth2.client.endpoint.DefaultAuthorizationCodeTokenResponseClient;
@@ -36,14 +37,12 @@ public class CustomOAuth2AuthorizationServerConfiguration extends WebSecurityCon
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .formLogin(config -> config.loginPage("/login"))
+                .formLogin(Customizer.withDefaults())
                 .oauth2Login(config -> config
-                        .loginPage("/login")
                         .tokenEndpoint(this::tokenEndpoint)
                         .userInfoEndpoint(this::userInfoEndpoint)
                         .authorizationEndpoint(this::authorizationEndpoint))
                 .authorizeRequests()
-                    .antMatchers("/login").permitAll()
                     .anyRequest().authenticated();
     }
     // @formatter:on
