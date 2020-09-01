@@ -18,11 +18,13 @@ public interface CustomOAuth2User extends OAuth2User {
         return null;
     }
 
+    // 这里只是保存用户在第三方应用上的权限,对于我们来说无用
     @Override
     default Map<String, Object> getAttributes() {
         return new HashMap<>();
     }
 
+    // 这里只是保存用户在第三方应用上的权限,对于我们来说无用
     @Override
    default Collection<? extends GrantedAuthority> getAuthorities() {
         return AuthorityUtils.createAuthorityList("ROLE_USER");

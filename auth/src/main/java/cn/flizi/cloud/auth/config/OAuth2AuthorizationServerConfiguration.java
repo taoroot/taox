@@ -1,10 +1,13 @@
 package cn.flizi.cloud.auth.config;
 
+import cn.flizi.cloud.auth.service.OAuth2UserServiceImpl;
+import cn.flizi.cloud.auth.social.SocialDetailsService;
 import cn.flizi.cloud.auth.social.converter.*;
 import cn.flizi.cloud.auth.social.user.GitHubOAuth2User;
 import cn.flizi.cloud.auth.social.user.GiteeOAuth2User;
 import cn.flizi.cloud.auth.social.user.QQOAuth2User;
 import cn.flizi.cloud.auth.social.user.WechatOAuth2User;
+import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.MediaType;
@@ -16,23 +19,27 @@ import org.springframework.security.config.annotation.web.configurers.oauth2.cli
 import org.springframework.security.oauth2.client.endpoint.DefaultAuthorizationCodeTokenResponseClient;
 import org.springframework.security.oauth2.client.http.OAuth2ErrorResponseErrorHandler;
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
-import org.springframework.security.oauth2.client.userinfo.*;
+import org.springframework.security.oauth2.client.userinfo.CustomUserTypesOAuth2UserService;
 import org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter;
 import org.springframework.security.oauth2.core.http.converter.OAuth2AccessTokenResponseHttpMessageConverter;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-import javax.annotation.Resource;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 @Log4j2
 @Component
 @Order(101)
-public class CustomOAuth2AuthorizationServerConfiguration extends WebSecurityConfigurerAdapter {
+@AllArgsConstructor
+public class OAuth2AuthorizationServerConfiguration extends WebSecurityConfigurerAdapter {
 
-    @Resource
-    private ClientRegistrationRepository clientRegistrationRepository;
+    private final ClientRegistrationRepository clientRegistrationRepository;
+
+    private final SocialDetailsService socialDetailsService;
 
     // @formatter:off
     @Override
@@ -48,12 +55,13 @@ public class CustomOAuth2AuthorizationServerConfiguration extends WebSecurityCon
     }
     // @formatter:on
 
-
     // 解决第三方授权登录兼容性问题
     private void authorizationEndpoint(OAuth2LoginConfigurer<HttpSecurity>.AuthorizationEndpointConfig authorization) {
         authorization.authorizationRequestResolver(new CustomOAuth2AuthorizationRequestResolver(clientRegistrationRepository,
                 OAuth2AuthorizationRequestRedirectFilter.DEFAULT_AUTHORIZATION_REQUEST_BASE_URI));
     }
+
+    // 解决第三方授权登录兼容性问题
     private void tokenEndpoint(OAuth2LoginConfigurer<HttpSecurity>.TokenEndpointConfig tokenEndpoint) {
         DefaultAuthorizationCodeTokenResponseClient client = new DefaultAuthorizationCodeTokenResponseClient();
         client.setRequestEntityConverter(new CustomOAuth2AuthorizationCodeGrantRequestEntityConverter());
@@ -68,28 +76,27 @@ public class CustomOAuth2AuthorizationServerConfiguration extends WebSecurityCon
         client.setRestOperations(restTemplate);
         tokenEndpoint.accessTokenResponseClient(client);
     }
-    private void userInfoEndpoint(OAuth2LoginConfigurer<HttpSecurity>.UserInfoEndpointConfig userInfo) {
-        List<OAuth2UserService<OAuth2UserRequest, OAuth2User>> userServices = new ArrayList<>();
 
+    /**
+     * 1. 解决第三方授权登录兼容性问题
+     * 2. 加载平台 userId
+     */
+    private void userInfoEndpoint(OAuth2LoginConfigurer<HttpSecurity>.UserInfoEndpointConfig userInfo) {
+        // 目前支持这四个, 如果是标准 OAuth2.0 协议,只需加入自定义的OAuth2User就好
         Map<String, Class<? extends OAuth2User>> customUserTypes = new HashMap<>();
         customUserTypes.put(GiteeOAuth2User.TYPE, GiteeOAuth2User.class);
-        customUserTypes.put(GitHubOAuth2User.TYPE, GitHubOAuth2User.class);
         customUserTypes.put(WechatOAuth2User.TYPE, WechatOAuth2User.class);
         customUserTypes.put(QQOAuth2User.TYPE, QQOAuth2User.class);
+        customUserTypes.put(GitHubOAuth2User.TYPE, GitHubOAuth2User.class);
 
-        // 解决微信问题: 放回是text/plain 的问题
-        CustomOAuth2UserRequestEntityConverter customOAuth2UserRequestEntityConverter = new CustomOAuth2UserRequestEntityConverter();
-        CustomUserTypesOAuth2UserService customOAuth2UserService = new CustomUserTypesOAuth2UserService(customUserTypes);
-        customOAuth2UserService.setRequestEntityConverter(customOAuth2UserRequestEntityConverter);
-        RestTemplate restTemplate = new RestTemplate();
+        CustomUserTypesOAuth2UserService customOAuth2UserService = new OAuth2UserServiceImpl(socialDetailsService, customUserTypes);
+        customOAuth2UserService.setRequestEntityConverter(new CustomOAuth2UserRequestEntityConverter());
+
+        RestTemplate restTemplate = new RestTemplate(); // 解决微信问题: 放回是text/plain 的问题
         restTemplate.getMessageConverters().add(new CustomMappingJackson2HttpMessageConverter());
-
         restTemplate.setErrorHandler(new OAuth2ErrorResponseErrorHandler());
         customOAuth2UserService.setRestOperations(restTemplate);
-        userServices.add(customOAuth2UserService);
-        DefaultOAuth2UserService defaultOAuth2UserService = new DefaultOAuth2UserService();
-        defaultOAuth2UserService.setRequestEntityConverter(customOAuth2UserRequestEntityConverter);
-        userServices.add(defaultOAuth2UserService);
-        userInfo.userService(new DelegatingOAuth2UserService<>(userServices));
+
+        userInfo.userService(customOAuth2UserService);
     }
 }
