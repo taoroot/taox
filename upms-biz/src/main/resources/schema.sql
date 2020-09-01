@@ -149,7 +149,7 @@ CREATE TABLE `upms_user` (
 -- Dumping data for table `upms_user`
 --
 
-INSERT INTO `upms_user` (`id`, `username`, `password`, `enabled`, `phone`, `avatar`, `dept_id`, `nickname`, `email`) VALUES (1,'admin','$2a$10$BK2HGpZVjchJe1HJQUAzVudj8DUhWwNjdS7zEBKFM8RmDjYmbWgLi',1,'13131333333','https://avatars0.githubusercontent.com/u/14340565?v=4',1000,'超级管理员','1@qq.com'),(100,'aaaaaa','$2a$10$TStD92Aw2enUZWjtBzdeCu5mpOH4YnmvotMt5vwy3niP2NY8PNGr2',1,'1234567890','http://localhost:9528/logo.jpg',1000,'11111','1@qq.com'),(101,'bbbbbb','$2a$10$TStD92Aw2enUZWjtBzdeCu5mpOH4YnmvotMt5vwy3niP2NY8PNGr2',1,'1234567890','http://localhost:9528/logo.jpg',1001,'22222','1@qq.com'),(102,'cccccc','$2a$10$TStD92Aw2enUZWjtBzdeCu5mpOH4YnmvotMt5vwy3niP2NY8PNGr2',0,'1234567890','http://localhost:9528/logo.jpg',1002,'33333','1@qq.com'),(200,'dddddd','$2a$10$TStD92Aw2enUZWjtBzdeCu5mpOH4YnmvotMt5vwy3niP2NY8PNGr2',1,'1234567890','http://localhost:9528/logo.jpg',2002,'44444','1@qq.com'),(201,'eeeeee','$2a$10$TStD92Aw2enUZWjtBzdeCu5mpOH4YnmvotMt5vwy3niP2NY8PNGr2',1,'1234567890','http://localhost:9528/logo.jpg',2001,'55555','1@qq.com'),(202,'ffffff','$2a$10$TStD92Aw2enUZWjtBzdeCu5mpOH4YnmvotMt5vwy3niP2NY8PNGr2',1,'1234567890','http://localhost:9528/logo.jpg',2000,'66666','1@qq.com');
+INSERT INTO `upms_user` (`id`, `username`, `password`, `enabled`, `phone`, `avatar`, `dept_id`, `nickname`, `email`) VALUES (1,'user','$2a$10$BK2HGpZVjchJe1HJQUAzVudj8DUhWwNjdS7zEBKFM8RmDjYmbWgLi',1,'13131333333','https://avatars0.githubusercontent.com/u/14340565?v=4',1000,'超级管理员','1@qq.com'),(100,'aaaaaa','$2a$10$TStD92Aw2enUZWjtBzdeCu5mpOH4YnmvotMt5vwy3niP2NY8PNGr2',1,'1234567890','http://localhost:9528/logo.jpg',1000,'11111','1@qq.com'),(101,'bbbbbb','$2a$10$TStD92Aw2enUZWjtBzdeCu5mpOH4YnmvotMt5vwy3niP2NY8PNGr2',1,'1234567890','http://localhost:9528/logo.jpg',1001,'22222','1@qq.com'),(102,'cccccc','$2a$10$TStD92Aw2enUZWjtBzdeCu5mpOH4YnmvotMt5vwy3niP2NY8PNGr2',0,'1234567890','http://localhost:9528/logo.jpg',1002,'33333','1@qq.com'),(200,'dddddd','$2a$10$TStD92Aw2enUZWjtBzdeCu5mpOH4YnmvotMt5vwy3niP2NY8PNGr2',1,'1234567890','http://localhost:9528/logo.jpg',2002,'44444','1@qq.com'),(201,'eeeeee','$2a$10$TStD92Aw2enUZWjtBzdeCu5mpOH4YnmvotMt5vwy3niP2NY8PNGr2',1,'1234567890','http://localhost:9528/logo.jpg',2001,'55555','1@qq.com'),(202,'ffffff','$2a$10$TStD92Aw2enUZWjtBzdeCu5mpOH4YnmvotMt5vwy3niP2NY8PNGr2',1,'1234567890','http://localhost:9528/logo.jpg',2000,'66666','1@qq.com');
 
 --
 -- Table structure for table `upms_user_oauth2`
@@ -174,6 +174,7 @@ CREATE TABLE `upms_user_oauth2` (
 -- Dumping data for table `upms_user_oauth2`
 --
 
+INSERT INTO `upms_user_oauth2` (`client_registration_id`, `principal_name`, `created_at`, `user_id`, `nickname`, `avatar`, `id`) VALUES ('gitee','1603766','2020-09-01 12:43:48','1',NULL,NULL,1);
 
 --
 -- Table structure for table `upms_user_role`
@@ -204,4 +205,4 @@ INSERT INTO `upms_user_role` (`user_id`, `role_id`) VALUES (1,1),(1,2);
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-09-01 12:27:48
+-- Dump completed on 2020-09-02  0:14:10

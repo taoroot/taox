@@ -18,7 +18,7 @@ spring:
             client-id: xxxx
             client-secret: xxxx
             authorization-grant-type: authorization_code
-            redirect-uri: https://xxx/login/oauth2/code/gitea
+            redirect-uri: https://xxx/login/oauth2/code/gitee
           wechat:
             client-id: xxx
             client-secret: xxxx

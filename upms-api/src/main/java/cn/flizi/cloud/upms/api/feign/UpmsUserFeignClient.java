@@ -14,14 +14,14 @@ public interface UpmsUserFeignClient {
     @GetMapping(value = "/auth/pass/{username}")
     AuthUserInfoVo getInfoByUsername(@PathVariable("username") String username);
 
-//    /**
-//     * 通过社交账号查找用户信息
-//     *
-//     * @param type 社交类型
-//     * @param name 当前用户在当前社交平台上的唯一标识
-//     * @see cn.flizi.cloud.auth.social.user
-//     */
-//    @GetMapping(value = "/user/info/social/{type}/{name}", headers = "internal")
-//    UserInfo getInfoBySocial(@PathVariable String type, @PathVariable String name);
+    /**
+     * 通过社交账号查找用户信息
+     *
+     * @param registrationId 社交类型
+     * @param name 当前用户在当前社交平台上的唯一标识
+     * @see cn.flizi.cloud.auth.social.user
+     */
+    @GetMapping(value = "/auth/social/{registrationId}/{name}")
+    AuthUserInfoVo getInfoBySocial(@PathVariable("registrationId") String registrationId, @PathVariable("name") String name);
 
 }

@@ -3,7 +3,7 @@ package cn.flizi.cloud.upms.biz.web;
 import cn.flizi.cloud.common.core.utils.R;
 import cn.flizi.cloud.common.security.annotation.NotAuth;
 import cn.flizi.cloud.upms.api.vo.AuthUserInfoVo;
-import cn.flizi.cloud.upms.biz.service.UserService;
+import cn.flizi.cloud.upms.biz.service.AuthService;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -21,7 +21,7 @@ import java.util.HashMap;
 @AllArgsConstructor
 public class AuthController {
 
-    private final UserService userService;
+    private final AuthService authservice;
 
     /**
      * 特供 Resource-Server#oauth2Login 使用, 根据 token 放回用户信息
@@ -45,7 +45,7 @@ public class AuthController {
     @SneakyThrows
     @GetMapping(value = "/auth/pass/{username}")
     public AuthUserInfoVo authByUsername(@PathVariable String username) {
-        return userService.getAuthUserByUsername(username);
+        return authservice.getAuthUserByUsername(username);
     }
 
 
@@ -54,9 +54,9 @@ public class AuthController {
      */
     @NotAuth
     @SneakyThrows
-    @GetMapping(value = "/auth/social/{type}/{name}")
-    public AuthUserInfoVo authBySocial(@PathVariable String type, @PathVariable String name) {
-        return null;
+    @GetMapping(value = "/auth/social/{registrationId}/{name}")
+    public AuthUserInfoVo authBySocial(@PathVariable String registrationId, @PathVariable String name) {
+        return authservice.getAuthUserBySocial(registrationId, name);
     }
 
 
@@ -66,6 +66,6 @@ public class AuthController {
     @SneakyThrows
     @GetMapping(value = "/user_info")
     public R userInfo() {
-        return userService.userInfo();
+        return authservice.userInfo();
     }
 }
