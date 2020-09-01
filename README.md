@@ -61,7 +61,7 @@ npm run dev
 Spring Security 5 的 Oauth2Login, 所有配置都在后端, 前端只需要配置访问请求地址
 
 
-```http request
+```
 http://gateway/${router}/oauth2/authorization/${registerId}?redirect_uri=${redirect_uri}
 ```
 
@@ -83,7 +83,7 @@ http://gw.flizi.cn/mall/oauth2/authorization/mall/?redirect_uri=http%3A%2F%2Fmal
 
 ```java
 @EnableDiscoveryClient
-@EnableOAuth2LoginSecurity # Oauth2Login
+@EnableOAuth2LoginSecurity
 @EnableOauth2ResourceSecurity
 @SpringBootApplication
 public class MallApplication {
