@@ -18,4 +18,12 @@ public class AuthorizationController {
                     OAuth2AuthorizedClient authorizedClient) {
         return authorizedClient;
     }
+
+
+    @GetMapping(value = "/hello")
+    public OAuth2AuthorizedClient authorizationCodeGrant() {
+        return null;
+    }
+
+
 }

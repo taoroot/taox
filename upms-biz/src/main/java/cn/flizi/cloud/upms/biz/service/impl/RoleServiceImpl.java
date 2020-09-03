@@ -64,12 +64,18 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, UpmsRole> implement
             upmsRole.setScope(deptIds.toArray(new Integer[0]));
         }
 
-        // 自定义时, scope 不能空
+        // 自定义不能空
         if (upmsRole.getScopeType().equals(DataScopeTypeEnum.CUSTOMIZE)) {
             if (upmsRole.getScope() == null || upmsRole.getScope().length == 0) {
                 throw new RuntimeException("自定义权限范围时,必须至少包含一个范围");
             }
         }
+
+        // 用户级别,无部门id
+       if (upmsRole.getScopeType().equals(DataScopeTypeEnum.CUSTOMIZE)) {
+           deptIds.clear();
+        }
+
 
         saveOrUpdate(upmsRole);
 

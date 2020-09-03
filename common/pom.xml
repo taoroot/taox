@@ -17,6 +17,7 @@
         <module>common-core</module>
         <module>common-security</module>
         <module>common-mybatis</module>
+        <module>common-swagger</module>
     </modules>
 
 </project>

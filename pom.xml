@@ -16,6 +16,7 @@
         <mybatis-plus.version>3.3.2</mybatis-plus.version>
         <hutool.version>5.3.0</hutool.version>
         <swagger-ui.version>1.5.22</swagger-ui.version>
+        <knife4j.version>2.0.4</knife4j.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
@@ -89,6 +90,16 @@
                 <version>${mybatis-plus.version}</version>
             </dependency>
             <dependency>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>knife4j-micro-spring-boot-starter</artifactId>
+                <version>${knife4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>knife4j-spring-boot-starter</artifactId>
+                <version>${knife4j.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>cn.flizi.cloud</groupId>
                 <artifactId>upms-api</artifactId>
                 <version>${project.version}</version>
@@ -106,6 +117,11 @@
             <dependency>
                 <groupId>cn.flizi.cloud</groupId>
                 <artifactId>common-mybatis</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.flizi.cloud</groupId>
+                <artifactId>common-swagger</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>

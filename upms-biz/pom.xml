@@ -42,6 +42,10 @@
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-core</artifactId>
         </dependency>
+        <dependency>
+            <groupId>cn.flizi.cloud</groupId>
+            <artifactId>common-swagger</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

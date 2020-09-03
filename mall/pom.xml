@@ -25,6 +25,10 @@
             <groupId>cn.flizi.cloud</groupId>
             <artifactId>common-security</artifactId>
         </dependency>
+        <dependency>
+            <groupId>cn.flizi.cloud</groupId>
+            <artifactId>common-swagger</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

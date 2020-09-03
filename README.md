@@ -4,15 +4,17 @@
 
 # 特点:
 
-- 基于新的 `Spring Security OAuth2 Authorization Server` 实现单点登录
+- 基于新的 `Spring Security OAuth2 Authorization Server` **实现单点登录**
   - 支持密码登录
   - 支持第三方OAuth2授权登录
-    - github(已支持)
-    - 码云(适配中)
-    - 微信开放平台(适配中)
-    - QQ(适配中)
+    - github
+    - 码云
+    - 微信开放平台
+    - QQ
   - 支持短信登录(计划中)
-   
+
+- 全局统一 USER_ID
+- 个性化
 
 [线上预览地址](http://mall.flizi.cn) 
 
