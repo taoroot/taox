@@ -2,8 +2,7 @@ package cn.flizi.cloud.auth.web;
 
 import cn.flizi.cloud.auth.api.entity.AuthUserOauth2;
 import cn.flizi.cloud.auth.social.SocialDetailsService;
-import cn.flizi.cloud.auth.social.user.GiteeOAuth2User;
-import cn.flizi.cloud.auth.social.user.UserDetailOAuthUser;
+import cn.flizi.cloud.auth.social.user.*;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -37,25 +36,6 @@ public class AuthorizationController {
         return "index";
     }
 
-    @GetMapping(value = "/oauth2/bind/" + GiteeOAuth2User.TYPE)
-    public String bindGitee(Model model, @RegisteredOAuth2AuthorizedClient(GiteeOAuth2User.TYPE)
-            OAuth2AuthorizedClient authorizedClient) {
-        authorizedClientService.removeAuthorizedClient(GiteeOAuth2User.TYPE, authorizedClient.getPrincipalName());
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        UserDetailOAuthUser userDetailOAuthUser = (UserDetailOAuthUser) authentication.getPrincipal();
-
-        boolean b = socialDetailsService.bindSocial(userDetailOAuthUser.getCustomOAuth2User(),
-                GiteeOAuth2User.TYPE,
-                authentication.getName()
-        );
-
-        if (!b) {
-            // 当前账号以有绑定,请先解绑
-        }
-
-        return "redirect:/";
-    }
-
 
     @PostMapping("/oauth2/unbind/{registrationId}/{principalName}")
     public String unbind(Model model, @PathVariable("registrationId") String registrationId,
@@ -64,6 +44,43 @@ public class AuthorizationController {
         boolean b = socialDetailsService.unbindSocial(registrationId, principalName);
         if (b) {
             // 解绑失败
+        }
+        return "redirect:/";
+    }
+
+    // todo 这里是否有更加优雅的方式
+    @GetMapping(value = "/oauth2/bind/" + GiteeOAuth2User.TYPE)
+    public String bindGitee(@RegisteredOAuth2AuthorizedClient(GiteeOAuth2User.TYPE) OAuth2AuthorizedClient authorizedClient) {
+        return doBind(GiteeOAuth2User.TYPE, authorizedClient);
+    }
+
+    @GetMapping(value = "/oauth2/bind/" + GitHubOAuth2User.TYPE)
+    public String bindGithub(@RegisteredOAuth2AuthorizedClient(GitHubOAuth2User.TYPE) OAuth2AuthorizedClient authorizedClient) {
+        return doBind(GitHubOAuth2User.TYPE, authorizedClient);
+    }
+
+    @GetMapping(value = "/oauth2/bind/" + WechatOAuth2User.TYPE)
+    public String bindWechat(@RegisteredOAuth2AuthorizedClient(WechatOAuth2User.TYPE) OAuth2AuthorizedClient authorizedClient) {
+        return doBind(WechatOAuth2User.TYPE, authorizedClient);
+    }
+
+    @GetMapping(value = "/oauth2/bind/" + QQOAuth2User.TYPE)
+    public String bindQQ(@RegisteredOAuth2AuthorizedClient(QQOAuth2User.TYPE) OAuth2AuthorizedClient authorizedClient) {
+        return doBind(QQOAuth2User.TYPE, authorizedClient);
+    }
+
+    private String doBind(String registrationId, OAuth2AuthorizedClient authorizedClient) {
+        authorizedClientService.removeAuthorizedClient(registrationId, authorizedClient.getPrincipalName());
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UserDetailOAuthUser userDetailOAuthUser = (UserDetailOAuthUser) authentication.getPrincipal();
+
+        boolean b = socialDetailsService.bindSocial(userDetailOAuthUser.getCustomOAuth2User(),
+                registrationId,
+                authentication.getName()
+        );
+
+        if (!b) {
+            // 当前账号以有绑定,请先解绑
         }
         return "redirect:/";
     }

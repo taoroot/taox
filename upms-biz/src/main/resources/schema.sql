@@ -19,7 +19,6 @@
 -- Table structure for table `upms_authority`
 --
 
-DROP TABLE IF EXISTS `upms_authority`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `upms_authority` (
@@ -35,12 +34,12 @@ CREATE TABLE `upms_authority` (
   `weight` int(11) NOT NULL DEFAULT '1' COMMENT '排序值',
   `type` char(1) NOT NULL DEFAULT '0' COMMENT '菜单类型 （0菜单 1按钮）',
   `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `update_time` timestamp NULL DEFAULT NULL COMMENT '更新时间',
+  `update_time` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   `breadcrumb` int(1) DEFAULT '0',
   `hidden` varchar(255) DEFAULT '0' COMMENT '0-开启，1- 关闭',
   `authority` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-);
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='权限表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -53,22 +52,21 @@ INSERT INTO `upms_authority` (`id`, `parent_id`, `path`, `title`, `name`, `compo
 -- Table structure for table `upms_dept`
 --
 
-DROP TABLE IF EXISTS `upms_dept`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `upms_dept` (
-  `id` int(20) NOT NULL COMMENT '部门主键ID',
+  `id` int(20) NOT NULL AUTO_INCREMENT COMMENT '部门主键ID',
   `name` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '部门名称',
   `weight` int(11) DEFAULT NULL COMMENT '排序',
   `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `update_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '修改时间',
+  `update_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
   `parent_id` int(11) DEFAULT NULL COMMENT '上级部门',
   `email` varchar(30) COLLATE utf8mb4_bin DEFAULT NULL,
   `phone` varchar(20) COLLATE utf8mb4_bin DEFAULT NULL,
   `leader` varchar(20) COLLATE utf8mb4_bin DEFAULT NULL,
   `enabled` char(1) COLLATE utf8mb4_bin NOT NULL DEFAULT '1',
-  PRIMARY KEY (`id`)
-);
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=2003 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin ROW_FORMAT=DYNAMIC COMMENT='部门管理';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -81,21 +79,20 @@ INSERT INTO `upms_dept` (`id`, `name`, `weight`, `create_time`, `update_time`, `
 -- Table structure for table `upms_role`
 --
 
-DROP TABLE IF EXISTS `upms_role`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `upms_role` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(64) COLLATE utf8mb4_bin NOT NULL,
   `role` varchar(64) COLLATE utf8mb4_bin NOT NULL,
   `scope_type` int(11) DEFAULT NULL,
   `scope` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL,
   `description` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL,
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `update_time` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `role_idx1_role_code` (`role`)
-);
+  `update_time` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE KEY `role_idx1_role_code` (`role`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin ROW_FORMAT=DYNAMIC COMMENT='角色';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -108,14 +105,13 @@ INSERT INTO `upms_role` (`id`, `name`, `role`, `scope_type`, `scope`, `descripti
 -- Table structure for table `upms_role_authority`
 --
 
-DROP TABLE IF EXISTS `upms_role_authority`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `upms_role_authority` (
   `role_id` int(11) NOT NULL,
   `authority_id` int(11) NOT NULL,
-  PRIMARY KEY (`role_id`,`authority_id`)
-);
+  PRIMARY KEY (`role_id`,`authority_id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='角色菜单表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -128,11 +124,10 @@ INSERT INTO `upms_role_authority` (`role_id`, `authority_id`) VALUES (1,10),(1,1
 -- Table structure for table `upms_user`
 --
 
-DROP TABLE IF EXISTS `upms_user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `upms_user` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(50) NOT NULL,
   `password` varchar(100) NOT NULL,
   `enabled` tinyint(1) NOT NULL DEFAULT '1',
@@ -141,8 +136,8 @@ CREATE TABLE `upms_user` (
   `dept_id` int(11) DEFAULT NULL,
   `nickname` varchar(50) DEFAULT NULL,
   `email` varchar(25) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-);
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=203 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -155,7 +150,6 @@ INSERT INTO `upms_user` (`id`, `username`, `password`, `enabled`, `phone`, `avat
 -- Table structure for table `upms_user_oauth2`
 --
 
-DROP TABLE IF EXISTS `upms_user_oauth2`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `upms_user_oauth2` (
@@ -165,29 +159,28 @@ CREATE TABLE `upms_user_oauth2` (
   `user_id` varchar(255) DEFAULT NULL,
   `nickname` varchar(200) DEFAULT NULL,
   `avatar` varchar(200) DEFAULT NULL,
-  `id` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-);
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE KEY `upms_user_oauth2_pk` (`client_registration_id`,`principal_name`)
+) ENGINE=InnoDB AUTO_INCREMENT=75 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `upms_user_oauth2`
 --
 
-INSERT INTO `upms_user_oauth2` (`client_registration_id`, `principal_name`, `created_at`, `user_id`, `nickname`, `avatar`, `id`) VALUES ('gitee','1603766','2020-09-01 12:43:48','1',NULL,NULL,1);
 
 --
 -- Table structure for table `upms_user_role`
 --
 
-DROP TABLE IF EXISTS `upms_user_role`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `upms_user_role` (
   `user_id` int(11) NOT NULL COMMENT '用户ID',
   `role_id` int(11) NOT NULL COMMENT '角色ID',
-  PRIMARY KEY (`user_id`,`role_id`)
-);
+  PRIMARY KEY (`user_id`,`role_id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='用户角色表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -205,4 +198,4 @@ INSERT INTO `upms_user_role` (`user_id`, `role_id`) VALUES (1,1),(1,2);
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-09-02  0:14:10
+-- Dump completed on 2020-09-03 14:48:41
