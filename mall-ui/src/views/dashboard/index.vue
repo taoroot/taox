@@ -1,7 +1,7 @@
 <template>
   <div class="dashboard-container">
     <div class="dashboard-text">账号: {{ name }}</div>
-    <el-button type="primary" @click.native.prevent="bindButton( 540)"> 绑定第三方账号 </el-button>
+    <el-button type="primary" @click.native.prevent="bindButton( 840)"> 绑定第三方账号 </el-button>
   </div>
 </template>
 

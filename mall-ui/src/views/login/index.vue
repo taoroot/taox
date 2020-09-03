@@ -6,7 +6,7 @@
         <h3 class="title">MALL 后台管理系统</h3>
       </div>
 
-      <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="oauth2Button('mall', 540)">TAO-X 授 权 登 录 </el-button>
+      <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="oauth2Button('mall', 1000)">TAO-X 授 权 登 录 </el-button>
     </el-form>
   </div>
 </template>

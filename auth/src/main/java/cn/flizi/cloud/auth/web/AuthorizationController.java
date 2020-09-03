@@ -38,13 +38,10 @@ public class AuthorizationController {
 
 
     @PostMapping("/oauth2/unbind/{registrationId}/{principalName}")
-    public String unbind(Model model, @PathVariable("registrationId") String registrationId,
+    public String unbind(@PathVariable("registrationId") String registrationId,
                          @PathVariable("principalName") String principalName) {
 
-        boolean b = socialDetailsService.unbindSocial(registrationId, principalName);
-        if (b) {
-            // 解绑失败
-        }
+        socialDetailsService.unbindSocial(registrationId, principalName);
         return "redirect:/";
     }
 
@@ -72,15 +69,19 @@ public class AuthorizationController {
     private String doBind(String registrationId, OAuth2AuthorizedClient authorizedClient) {
         authorizedClientService.removeAuthorizedClient(registrationId, authorizedClient.getPrincipalName());
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        UserDetailOAuthUser userDetailOAuthUser = (UserDetailOAuthUser) authentication.getPrincipal();
 
-        boolean b = socialDetailsService.bindSocial(userDetailOAuthUser.getCustomOAuth2User(),
-                registrationId,
-                authentication.getName()
-        );
-
-        if (!b) {
-            // 当前账号以有绑定,请先解绑
+        if (authentication.getPrincipal() instanceof UserDetailOAuthUser) {
+            UserDetailOAuthUser userDetailOAuthUser = (UserDetailOAuthUser) authentication.getPrincipal();
+            socialDetailsService.bindSocial(userDetailOAuthUser.getCustomOAuth2User(),
+                    registrationId,
+                    authentication.getName()
+            );
+        } else {
+            // fix bug:
+            // 可能存在当前有存在 authorizedClient 过,再使用表单登录,或者其他登录
+            // 这里的上下文 getPrincipal 将是 AuthCustomUser 或者其他, 故这里先删除,重新登录以下就好
+            // 没有 authorizedClient 的时候, 会走登录流程, 所以再次回来时,就是 UserDetailOAuthUser 的了
+            return "redirect:/oauth2/bind/" + registrationId;
         }
         return "redirect:/";
     }
