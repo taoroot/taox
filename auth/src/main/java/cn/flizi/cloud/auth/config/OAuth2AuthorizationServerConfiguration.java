@@ -1,7 +1,7 @@
 package cn.flizi.cloud.auth.config;
 
-import cn.flizi.cloud.auth.social.UserDetailTypeOAuthUserService;
 import cn.flizi.cloud.auth.social.SocialDetailsService;
+import cn.flizi.cloud.auth.social.UserDetailTypeOAuthUserService;
 import cn.flizi.cloud.auth.social.converter.*;
 import cn.flizi.cloud.auth.social.user.GitHubOAuth2User;
 import cn.flizi.cloud.auth.social.user.GiteeOAuth2User;
@@ -46,6 +46,7 @@ public class OAuth2AuthorizationServerConfiguration extends WebSecurityConfigure
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .formLogin(Customizer.withDefaults())
+                .logout().invalidateHttpSession(true).and()
                 .oauth2Login(config -> config
                         .tokenEndpoint(this::tokenEndpoint)
                         .userInfoEndpoint(this::userInfoEndpoint)
@@ -53,6 +54,7 @@ public class OAuth2AuthorizationServerConfiguration extends WebSecurityConfigure
                 .authorizeRequests()
                     .anyRequest().authenticated();
     }
+
     // @formatter:on
 
     // 解决第三方授权登录兼容性问题

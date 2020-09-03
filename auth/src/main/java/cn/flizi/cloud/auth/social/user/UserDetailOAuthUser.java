@@ -1,6 +1,7 @@
 package cn.flizi.cloud.auth.social.user;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -8,6 +9,7 @@ import java.util.Collection;
 import java.util.Map;
 
 @AllArgsConstructor
+@Getter
 public class UserDetailOAuthUser implements CustomOAuth2User {
     private final UserDetails userDetails;
     private final CustomOAuth2User customOAuth2User;
@@ -36,4 +38,5 @@ public class UserDetailOAuthUser implements CustomOAuth2User {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return userDetails.getAuthorities();
     }
+
 }

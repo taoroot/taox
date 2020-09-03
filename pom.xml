@@ -26,6 +26,7 @@
         <module>common</module>
         <module>eureka</module>
         <module>gateway</module>
+        <module>auth-api</module>
         <module>auth</module>
         <module>upms-api</module>
         <module>upms-biz</module>
@@ -52,7 +53,6 @@
     </dependencies>
 
     <dependencyManagement>
-
         <dependencies>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
@@ -64,7 +64,7 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>Hoxton.SR7</version>
+                <version>${spring-cloud.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -91,6 +91,11 @@
             <dependency>
                 <groupId>cn.flizi.cloud</groupId>
                 <artifactId>upms-api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.flizi.cloud</groupId>
+                <artifactId>auth-api</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>

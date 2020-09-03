@@ -5,8 +5,6 @@ import cn.flizi.cloud.common.core.utils.TreeUtils;
 import cn.flizi.cloud.common.security.SecurityUtils;
 import cn.flizi.cloud.upms.api.entity.UpmsAuthority;
 import cn.flizi.cloud.upms.api.entity.UpmsUser;
-import cn.flizi.cloud.upms.api.entity.UpmsUserOauth2;
-import cn.flizi.cloud.upms.api.vo.AuthUserInfoVo;
 import cn.flizi.cloud.upms.biz.mapper.DeptMapper;
 import cn.flizi.cloud.upms.biz.mapper.UserMapper;
 import cn.flizi.cloud.upms.biz.mapper.UserOauth2Mapper;
@@ -14,7 +12,6 @@ import cn.flizi.cloud.upms.biz.mapper.UserRoleMapper;
 import cn.flizi.cloud.upms.biz.service.AuthService;
 import cn.flizi.cloud.upms.biz.service.UserRoleService;
 import cn.hutool.core.lang.tree.TreeUtil;
-import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.stereotype.Service;
@@ -66,42 +63,5 @@ public class AuthServiceImpl implements AuthService {
             tree.putExtra("meta", meta);
         }));
         return R.ok(result);
-    }
-
-    @Override
-    public AuthUserInfoVo getAuthUserByUsername(String username) {
-        UpmsUser user = userMapper.selectOne(Wrappers.<UpmsUser>lambdaQuery()
-                .eq(UpmsUser::getUsername, username));
-
-        if (user == null) {
-            return null;
-        }
-        return translate(user);
-    }
-
-    @Override
-    public AuthUserInfoVo getAuthUserBySocial(String registrationId, String name) {
-        UpmsUserOauth2 userOauth2 = userOauth2Mapper.selectOne(
-                Wrappers.<UpmsUserOauth2>lambdaQuery()
-                        .eq(UpmsUserOauth2::getClientRegistrationId, registrationId)
-                        .eq(UpmsUserOauth2::getPrincipalName, name)
-        );
-
-        if (userOauth2 != null) {
-            UpmsUser user = userMapper.selectById(userOauth2.getUserId());
-            return translate(user);
-        }
-
-        return null;
-    }
-
-    private AuthUserInfoVo translate(UpmsUser user) {
-        AuthUserInfoVo userInfo = new AuthUserInfoVo();
-        userInfo.setId(user.getId());
-        userInfo.setUsername(user.getUsername());
-        userInfo.setPassword(user.getPassword());
-        userInfo.setRoles(userMapper.roleNames(user.getId()).toArray(new String[0]));
-        userInfo.setAuthorities(userMapper.authorityNames(user.getId(), UpmsAuthority.FUN).toArray(new String[0]));
-        return userInfo;
     }
 }

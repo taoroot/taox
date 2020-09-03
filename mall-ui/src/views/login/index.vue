@@ -41,7 +41,7 @@ export default {
       this.loading = true;
       const redirect_uri = encodeURIComponent(window.location.origin + '/#/auth-redirect')
       const url = process.env.VUE_APP_BASE_API + `${thirdpart}/oauth2/authorization/${thirdpart}?redirect_uri=${redirect_uri}`;
-      openWindow(url, thirdpart, wdith, 540)
+      openWindow(url, 'TAO-X统一认证中心', wdith, 540)
       this.loading = false
     },
     afterQRScan(e) {
