@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Map;
 
@@ -28,6 +29,14 @@ public class AuthorizationController {
     private final SocialDetailsService socialDetailsService;
 
     private final OAuth2AuthorizedClientService authorizedClientService;
+
+
+    @GetMapping(value = "/resource/ids")
+    @ResponseBody
+    public String[] getClients() {
+        return new String[]{"mall"};
+    }
+
 
     @GetMapping(value = "/")
     public String authorizationCodeGrant(Model model) {

@@ -71,6 +71,10 @@
             <artifactId>jquery</artifactId>
             <version>3.4.1</version>
         </dependency>
+        <dependency>
+            <groupId>cn.flizi.cloud</groupId>
+            <artifactId>common-swagger</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
