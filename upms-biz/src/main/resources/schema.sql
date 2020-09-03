@@ -19,6 +19,7 @@
 -- Table structure for table `upms_authority`
 --
 
+DROP TABLE IF EXISTS `upms_authority`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `upms_authority` (
@@ -52,6 +53,7 @@ INSERT INTO `upms_authority` (`id`, `parent_id`, `path`, `title`, `name`, `compo
 -- Table structure for table `upms_dept`
 --
 
+DROP TABLE IF EXISTS `upms_dept`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `upms_dept` (
@@ -79,6 +81,7 @@ INSERT INTO `upms_dept` (`id`, `name`, `weight`, `create_time`, `update_time`, `
 -- Table structure for table `upms_role`
 --
 
+DROP TABLE IF EXISTS `upms_role`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `upms_role` (
@@ -105,6 +108,7 @@ INSERT INTO `upms_role` (`id`, `name`, `role`, `scope_type`, `scope`, `descripti
 -- Table structure for table `upms_role_authority`
 --
 
+DROP TABLE IF EXISTS `upms_role_authority`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `upms_role_authority` (
@@ -124,6 +128,7 @@ INSERT INTO `upms_role_authority` (`role_id`, `authority_id`) VALUES (1,10),(1,1
 -- Table structure for table `upms_user`
 --
 
+DROP TABLE IF EXISTS `upms_user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `upms_user` (
@@ -150,6 +155,7 @@ INSERT INTO `upms_user` (`id`, `username`, `password`, `enabled`, `phone`, `avat
 -- Table structure for table `upms_user_oauth2`
 --
 
+DROP TABLE IF EXISTS `upms_user_oauth2`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `upms_user_oauth2` (
@@ -174,6 +180,7 @@ CREATE TABLE `upms_user_oauth2` (
 -- Table structure for table `upms_user_role`
 --
 
+DROP TABLE IF EXISTS `upms_user_role`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `upms_user_role` (
@@ -198,4 +205,4 @@ INSERT INTO `upms_user_role` (`user_id`, `role_id`) VALUES (1,1),(1,2);
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-09-03 14:48:41
+-- Dump completed on 2020-09-03 15:00:34
