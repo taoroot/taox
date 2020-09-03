@@ -1,5 +1,7 @@
 # taox
 
+![auth](https://cdn.flizi.cn/taox/auth.gif)
+
 # 特点:
 
 - 基于新的 `Spring Security OAuth2 Authorization Server` 实现单点登录
