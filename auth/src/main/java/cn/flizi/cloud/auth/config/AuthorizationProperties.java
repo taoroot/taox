@@ -5,6 +5,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -24,6 +25,6 @@ public class AuthorizationProperties {
 
         private String redirectUri;
 
-        private Set<String> scope;
+        private Set<String> scope = new HashSet<>();
     }
 }
