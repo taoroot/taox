@@ -2,6 +2,7 @@
 
 ![auth](https://cdn.flizi.cn/taox/auth.gif)
 ![auth](https://cdn.flizi.cn/taox/swagger.gif)
+![auth](https://cdn.flizi.cn/taox/sso-gitea.gif)
 
 # 特点:
 
