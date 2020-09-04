@@ -30,8 +30,8 @@ password: 123456
 | ----------- | ----------- |
 | Spring Boot   | 2.3.2.RELEASE       |
 | Spring Cloud   | Hoxton.SR7        |
-| Spring Security | 5.3.3.RELEASE        |
-| Spring Security OAuth2 Authorization Server   | 0.0.1 |
+| Spring Security | [5.3.3.RELEASE](https://github.com/spring-projects/spring-security)        |
+| Spring Security OAuth2 Authorization Server   | [0.0.1](https://github.com/spring-projects-experimental/spring-authorization-server) |
 
 
 # 开发

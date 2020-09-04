@@ -8,6 +8,14 @@ spring:
     name: auth
   security:
     oauth2:
+      authorization:
+        client:
+          - client-id: mall
+            client-secret: secret
+            redirect-uri: http://localhost:8008/mall/login/oauth2/code/mall
+            scope:
+              - mall:read
+              - mall:write
       client:
         registration:
           github:
