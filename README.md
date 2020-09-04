@@ -1,6 +1,7 @@
 # taox
 
 ![auth](https://cdn.flizi.cn/taox/auth.gif)
+![auth](https://cdn.flizi.cn/taox/swagger.gif)
 
 # 特点:
 
