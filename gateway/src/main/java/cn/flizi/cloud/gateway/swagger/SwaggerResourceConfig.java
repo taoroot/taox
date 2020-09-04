@@ -38,6 +38,9 @@ public class SwaggerResourceConfig implements SwaggerResourcesProvider {
                 .subscribe(route -> routesMap.put(route.getUri().getHost(), route.getUri()));
 
         routesMap.forEach((name, uri) -> {
+            if (name.toLowerCase().contains("gateway")) {
+                return;
+            }
             String url = "/" + uri.getHost().toLowerCase() + API_URI;
             SwaggerResource swaggerResource = new SwaggerResource();
             swaggerResource.setUrl(url);
