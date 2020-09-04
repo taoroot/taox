@@ -2,9 +2,7 @@ package cn.flizi.cloud.auth.config;
 
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Import;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.OAuth2AuthorizationServerConfiguration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.keys.KeyManager;
 import org.springframework.security.crypto.keys.StaticKeyGeneratingKeyManager;
@@ -25,7 +23,6 @@ import java.util.UUID;
  * @since 0.0.1
  */
 @EnableWebSecurity
-@Import(OAuth2AuthorizationServerConfiguration.class)
 @EnableConfigurationProperties(AuthorizationProperties.class)
 public class AuthorizationServerConfig {
 
