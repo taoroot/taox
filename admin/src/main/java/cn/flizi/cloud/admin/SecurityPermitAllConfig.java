@@ -10,7 +10,8 @@ public class SecurityPermitAllConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.oauth2Login()
                 .and()
-                .authorizeRequests().anyRequest().authenticated()
+                .authorizeRequests().antMatchers("/actuator/**").permitAll()
+                .anyRequest().authenticated()
                 .and().csrf().disable();
     }
 

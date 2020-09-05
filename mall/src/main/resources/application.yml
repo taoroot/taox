@@ -18,6 +18,8 @@ logging:
 #    org.springframework.boot.autoconfigure: DEBUG
 
 spring:
+  application:
+    name: mall
   security:
     oauth2:
       resourceserver:
@@ -41,5 +43,3 @@ spring:
             # 写网关下的暴露地址
             user-info-uri: http://localhost:8008/upms/check_token
             user-name-attribute: name
-  application:
-    name: mall
