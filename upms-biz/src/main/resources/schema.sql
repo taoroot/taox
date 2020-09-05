@@ -47,7 +47,7 @@ CREATE TABLE `upms_authority` (
 -- Dumping data for table `upms_authority`
 --
 
-INSERT INTO `upms_authority` (`id`, `parent_id`, `path`, `title`, `name`, `component`, `always_show`, `redirect`, `icon`, `weight`, `type`, `create_time`, `update_time`, `breadcrumb`, `hidden`, `authority`) VALUES (10,-1,'external-link','动态路由',NULL,'Layout',NULL,'/github','link',2,'0','2020-08-18 02:13:56','2020-08-27 08:44:38',NULL,'0',NULL),(11,10,'https://github.com/taoroot/tao','github','github',NULL,NULL,NULL,'github',1,'0','2020-08-18 02:14:08','2020-08-23 08:56:04',NULL,'0',NULL),(12,10,'https://doc-tao.flizi.cn','vuepress','vuepress',NULL,NULL,NULL,'education',1,'0','2020-08-18 02:14:08','2020-08-27 08:44:59',NULL,'0',NULL),(1000,-1,'/system','系统设置',NULL,'Layout','0','/authority/index','example',1,'0','2020-08-24 08:24:45','2020-08-26 01:11:11',NULL,'0',NULL),(1001,1000,'authority','权限管理','Authority','authority/index','0',NULL,'tree-table',4,'0','2020-08-24 08:26:50','2020-08-24 08:40:01',NULL,'0',NULL),(1002,1000,'dept','部门管理','Dept','dept/index','0',NULL,'tree',3,'0','2020-08-24 08:35:28','2020-08-24 08:39:57',0,'0',NULL),(1003,1000,'role','角色管理','Role','role/index','0',NULL,'peoples',2,'0','2020-08-24 08:35:28','2020-08-24 08:39:51',0,'0',NULL),(1004,1000,'user','用户管理','User','user/index','0',NULL,'user',1,'0','2020-08-24 08:36:57','2020-08-24 08:39:32',0,'0',NULL);
+INSERT INTO `upms_authority` (`id`, `parent_id`, `path`, `title`, `name`, `component`, `always_show`, `redirect`, `icon`, `weight`, `type`, `create_time`, `update_time`, `breadcrumb`, `hidden`, `authority`) VALUES (10,-1,'/external-link','动态路由',NULL,'Layout',NULL,'/iframe/index','link',2,'0','2020-08-18 02:13:56','2020-09-05 02:28:27',NULL,'0',NULL),(11,10,'https://github.com/taoroot/taox','github','github','iframe/index',NULL,NULL,'github',1,'0','2020-08-18 02:14:08','2020-09-05 02:36:58',NULL,'0',NULL),(12,10,'vuepress','vuepress','https://doc-tao.flizi.cn','iframe/index',NULL,NULL,'education',1,'0','2020-08-18 02:14:08','2020-09-05 02:34:43',NULL,'0',NULL),(13,10,'swagger','swagger','http://gw.flizi.cn','iframe/index',NULL,NULL,'swagger',1,'0','2020-08-18 02:14:08','2020-09-05 02:33:21',NULL,'0',NULL),(1000,-1,'/system','系统设置',NULL,'Layout','0','/authority/index','example',1,'0','2020-08-24 08:24:45','2020-08-26 01:11:11',NULL,'0',NULL),(1001,1000,'authority','权限管理','Authority','authority/index','0',NULL,'tree-table',4,'0','2020-08-24 08:26:50','2020-08-24 08:40:01',NULL,'0',NULL),(1002,1000,'dept','部门管理','Dept','dept/index','0',NULL,'tree',3,'0','2020-08-24 08:35:28','2020-08-24 08:39:57',0,'0',NULL),(1003,1000,'role','角色管理','Role','role/index','0',NULL,'peoples',2,'0','2020-08-24 08:35:28','2020-08-24 08:39:51',0,'0',NULL),(1004,1000,'user','用户管理','User','user/index','0',NULL,'user',1,'0','2020-08-24 08:36:57','2020-08-24 08:39:32',0,'0',NULL);
 
 --
 -- Table structure for table `upms_dept`
@@ -122,7 +122,7 @@ CREATE TABLE `upms_role_authority` (
 -- Dumping data for table `upms_role_authority`
 --
 
-INSERT INTO `upms_role_authority` (`role_id`, `authority_id`) VALUES (1,10),(1,11),(1,12),(1,1000),(1,1001),(1,1002),(1,1003),(1,1004);
+INSERT INTO `upms_role_authority` (`role_id`, `authority_id`) VALUES (1,10),(1,11),(1,12),(1,13),(1,1000),(1,1001),(1,1002),(1,1003),(1,1004);
 
 --
 -- Table structure for table `upms_user`
@@ -168,13 +168,14 @@ CREATE TABLE `upms_user_oauth2` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE KEY `upms_user_oauth2_pk` (`client_registration_id`,`principal_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=75 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=106 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `upms_user_oauth2`
 --
 
+INSERT INTO `upms_user_oauth2` (`client_registration_id`, `principal_name`, `created_at`, `user_id`, `nickname`, `avatar`, `id`) VALUES ('gitee','1603766','2020-09-03 08:12:59','1','taoroot',NULL,105);
 
 --
 -- Table structure for table `upms_user_role`
@@ -205,4 +206,4 @@ INSERT INTO `upms_user_role` (`user_id`, `role_id`) VALUES (1,1),(1,2);
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-09-03 15:00:34
+-- Dump completed on 2020-09-05 10:43:08
