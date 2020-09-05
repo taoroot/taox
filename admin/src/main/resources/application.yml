@@ -1,0 +1,29 @@
+server:
+  port: 6222
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://register-server:8848/eureka/
+
+spring:
+  application:
+    name: admin
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://auth-server:6628/oauth2/jwks
+      client:
+        registration:
+          admin:
+            client-id: admin
+            client-secret: secret
+            authorization-grant-type: authorization_code
+            redirect-uri: "http://localhost:6222/login/oauth2/code/admin"
+        provider:
+          admin:
+            authorization-uri: http://auth-server:6628/oauth2/authorize
+            token-uri: http://auth-server:6628/oauth2/token
+            user-info-uri: http://localhost:8008/upms/check_token
+            user-name-attribute: name

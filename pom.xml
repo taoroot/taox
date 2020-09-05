@@ -17,6 +17,7 @@
         <hutool.version>5.3.0</hutool.version>
         <swagger-ui.version>1.5.22</swagger-ui.version>
         <knife4j.version>2.0.4</knife4j.version>
+        <admin.version>2.3.0</admin.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
@@ -27,10 +28,11 @@
         <module>common</module>
         <module>eureka</module>
         <module>gateway</module>
+        <module>admin</module>
         <module>auth-api</module>
         <module>auth</module>
         <module>upms-api</module>
-        <module>upms-biz</module>
+        <module>upms</module>
         <module>mall</module>
     </modules>
 
@@ -93,6 +95,16 @@
                 <groupId>com.github.xiaoymin</groupId>
                 <artifactId>knife4j-micro-spring-boot-starter</artifactId>
                 <version>${knife4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-starter-server</artifactId>
+                <version>${admin.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-starter-client</artifactId>
+                <version>${admin.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.github.xiaoymin</groupId>

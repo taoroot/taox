@@ -31,10 +31,18 @@ public class AuthorizationController {
     private final OAuth2AuthorizedClientService authorizedClientService;
 
 
+    @GetMapping(value = "/login")
+    public String login(Model model) {
+
+        return "login";
+    }
+
+
+
     @GetMapping(value = "/resource/ids")
     @ResponseBody
     public String[] getClients() {
-        return new String[]{"mall"};
+        return new String[]{"login in mall"};
     }
 
 

@@ -16,6 +16,9 @@ spring:
             scope:
               - mall:read
               - mall:write
+          - client-id: admin
+            client-secret: secret
+            redirect-uri: http://localhost:6222/login/oauth2/code/admin
       client:
         registration:
           github:

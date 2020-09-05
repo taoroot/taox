@@ -51,7 +51,7 @@ public class OAuth2AuthorizationServerConfiguration extends WebSecurityConfigure
                         .tokenEndpoint(this::tokenEndpoint)
                         .userInfoEndpoint(this::userInfoEndpoint)
                         .authorizationEndpoint(this::authorizationEndpoint))
-                .authorizeRequests().antMatchers("/resource/ids", "/v2/api-docs").permitAll()
+                .authorizeRequests().antMatchers("/resource/ids", "/v2/api-docs", "/actuator/**").permitAll()
                     .anyRequest().authenticated();
     }
 

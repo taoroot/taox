@@ -7,7 +7,7 @@
         <artifactId>taox</artifactId>
         <version>0.0.1</version>
     </parent>
-    <artifactId>upms-biz</artifactId>
+    <artifactId>upms</artifactId>
 
     <version>0.0.1</version>
     <name>${project.artifactId}</name>
@@ -17,6 +17,10 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>de.codecentric</groupId>
+            <artifactId>spring-boot-admin-starter-client</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
