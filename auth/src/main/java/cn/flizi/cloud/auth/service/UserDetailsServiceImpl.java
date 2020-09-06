@@ -19,6 +19,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         AuthUser user = userMapper.selectOne(Wrappers.<AuthUser>lambdaQuery()
                 .eq(AuthUser::getUsername, username));
+
+        if (user == null) {
+            throw new UsernameNotFoundException("用户不存在");
+        }
+
         return AuthUtils.translate(user);
     }
 }

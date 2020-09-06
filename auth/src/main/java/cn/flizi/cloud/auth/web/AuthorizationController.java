@@ -32,6 +32,9 @@ public class AuthorizationController {
 
     @GetMapping(value = "/login")
     public String login(Model model) {
+        // 已经登录不能再进入登录界面
+
+
         Map<String, AuthUserOauth2> socials = socialDetailsService.getSocials(true);
         model.addAttribute("AuthUserOauth2", socials);
         return "login";

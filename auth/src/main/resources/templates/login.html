@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -16,7 +16,7 @@
 <body>
 <div class="container">
     <form class="form-signin" method="post" action="/login">
-        <h2 class="form-signin-heading">TAO-X 统一授权中心</h2>
+        <h2 class="form-signin-heading">TAO-X 登录</h2>
         <p>
             <label for="username" class="sr-only">Username</label>
             <input type="text" id="username" name="username" class="form-control" placeholder="Username" required
@@ -31,9 +31,15 @@
         <h2 class="form-signin-heading"></h2>
         <table class="table table-striped">
             <tr th:each="user : ${AuthUserOauth2}">
-                <a style="margin: 10px;" th:text="${user.key}" th:href="@{'/oauth2/authorization/' + ${user.key}}">key</a>
+                <a style="margin: 10px;" th:text="${user.key}"
+                   th:href="@{'/oauth2/authorization/' + ${user.key}}">key</a>
             </tr>
         </table>
+        <div class="alert alert-success" role="alert"
+             th:if="${param.error != null && session.SPRING_SECURITY_LAST_EXCEPTION != null}">
+            <p style="color: red" th:if="${not #strings.isEmpty(session.SPRING_SECURITY_LAST_EXCEPTION.message)}"
+               th:text="${session.SPRING_SECURITY_LAST_EXCEPTION.message}">登录失败</p>
+        </div>
     </form>
 </div>
 </body>
