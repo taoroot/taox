@@ -39,14 +39,14 @@
                     <a th:if="${user.value == null}" th:href="@{'/oauth2/bind/' + ${user.key}}"> 绑定 </a>
                     <div th:if="${user.value != null}">
                         <span th:text="${user.value.nickname}"></span>
-                        <form th:action="@{'/oauth2/unbind/' + ${user.key}  + '/' + ${user.value.principalName}}" method="post">
+                        <form th:action="@{'/oauth2/unbind/' + ${user.key}  + '/' + ${user.value.principalName}}"
+                              method="post">
                             <button type="submit" class="btn btn-primary">解绑</button>
                         </form>
-<!--                        <a th:onclick="unbind([[${user.value.principalName}]]);"> 解绑 </a>-->
+                        <!--                        <a th:onclick="unbind([[${user.value.principalName}]]);"> 解绑 </a>-->
                     </div>
                 </td>
             </tr>
-            <tr>
         </table>
 
     </div>
@@ -60,7 +60,7 @@
         $.ajax({
             url: "/oauth2/unbind/" + empId,
             type: "POST",
-            beforeSend: function( xhr ) {
+            beforeSend: function (xhr) {
                 xhr.setRequestHeader(header, token);
             },
             success: function (result) {

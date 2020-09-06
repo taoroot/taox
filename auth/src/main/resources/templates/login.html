@@ -1,19 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
     <title>Please sign in</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-    <link href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css" rel="stylesheet" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.css"
+          th:href="@{/webjars/bootstrap/css/bootstrap.css}"/>
+    <link href="/signin.css" rel="stylesheet" crossorigin="anonymous"/>
 </head>
 <body>
 <div class="container">
     <form class="form-signin" method="post" action="/login">
-        <h2 class="form-signin-heading">Please sign in</h2>
+        <h2 class="form-signin-heading">TAO-X 统一授权中心</h2>
         <p>
             <label for="username" class="sr-only">Username</label>
             <input type="text" id="username" name="username" class="form-control" placeholder="Username" required
@@ -23,24 +26,15 @@
             <label for="password" class="sr-only">Password</label>
             <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
         </p>
-        <input name="_csrf" type="hidden" value="8decda74-a323-4977-890f-bbc903459470"/>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <input name="_csrf" type="hidden" th:value="${_csrf.token}"/>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
+        <h2 class="form-signin-heading"></h2>
+        <table class="table table-striped">
+            <tr th:each="user : ${AuthUserOauth2}">
+                <a style="margin: 10px;" th:text="${user.key}" th:href="@{'/oauth2/authorization/' + ${user.key}}">key</a>
+            </tr>
+        </table>
     </form>
-    <h2 class="form-signin-heading">第三方授权登录</h2>
-    <table class="table table-striped">
-        <tr>
-            <td><a href="/oauth2/authorization/qq">qq</a></td>
-        </tr>
-        <tr>
-            <td><a href="/oauth2/authorization/github">GitHub</a></td>
-        </tr>
-        <tr>
-            <td><a href="/oauth2/authorization/wechat">wechat</a></td>
-        </tr>
-        <tr>
-            <td><a href="/oauth2/authorization/gitee">gitee</a></td>
-        </tr>
-    </table>
 </div>
 </body>
 </html>

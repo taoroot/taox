@@ -30,10 +30,10 @@ public class AuthorizationController {
 
     private final OAuth2AuthorizedClientService authorizedClientService;
 
-
     @GetMapping(value = "/login")
     public String login(Model model) {
-
+        Map<String, AuthUserOauth2> socials = socialDetailsService.getSocials(true);
+        model.addAttribute("AuthUserOauth2", socials);
         return "login";
     }
 

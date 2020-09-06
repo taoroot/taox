@@ -12,7 +12,6 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.FormHttpMessageConverter;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.configurers.oauth2.client.OAuth2LoginConfigurer;
@@ -45,13 +44,16 @@ public class OAuth2AuthorizationServerConfiguration extends WebSecurityConfigure
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .formLogin(Customizer.withDefaults())
+                .formLogin(config -> {
+                    config.loginPage("/login");
+                })
                 .logout().invalidateHttpSession(true).and()
                 .oauth2Login(config -> config
+                        .loginPage("/login")
                         .tokenEndpoint(this::tokenEndpoint)
                         .userInfoEndpoint(this::userInfoEndpoint)
                         .authorizationEndpoint(this::authorizationEndpoint))
-                .authorizeRequests().antMatchers("/resource/ids", "/v2/api-docs", "/actuator/**").permitAll()
+                .authorizeRequests().antMatchers("/login", "/webjars/**", "/*.css", "/resource/ids", "/v2/api-docs", "/actuator/**").permitAll()
                     .anyRequest().authenticated();
     }
 
