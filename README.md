@@ -1,5 +1,7 @@
 # taox
 
+想了解Spring 中 OAuth2 支持情况,可以看看我[这篇文章](https://zhiyi.zone/oauth2/)
+
 ![auth](https://cdn.flizi.cn/taox/auth.gif)
 ![auth](https://cdn.flizi.cn/taox/swagger.gif)
 ![auth](https://cdn.flizi.cn/taox/sso-gitea.gif)
@@ -16,7 +18,7 @@
   - 支持短信登录(计划中)
 
 - 全局统一 USER_ID
-- 个性化
+
 
 [线上预览地址](http://mall.flizi.cn) 
 
