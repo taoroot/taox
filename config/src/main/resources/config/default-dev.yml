@@ -1,0 +1,10 @@
+auth-url: "http://auth-server:6628"
+gw-url: "http://localhost:8008"
+
+logging:
+  level:
+    root: INFO
+    org.springframework.web: DEBUG
+    org.springframework.security: DEBUG
+    org.springframework.security.oauth2: DEBUG
+#    org.springframework.boot.autoconfigure: DEBUG

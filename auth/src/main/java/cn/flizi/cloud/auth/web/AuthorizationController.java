@@ -45,7 +45,7 @@ public class AuthorizationController {
     @GetMapping(value = "/resource/ids")
     @ResponseBody
     public String[] getClients() {
-        return new String[]{"login in mall"};
+        return new String[]{"mall"};
     }
 
 

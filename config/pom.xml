@@ -7,10 +7,10 @@
         <artifactId>taox</artifactId>
         <version>0.0.1</version>
     </parent>
-    <artifactId>mall</artifactId>
+    <artifactId>config</artifactId>
     <version>0.0.1</version>
     <name>${project.artifactId}</name>
-    <description>User Permissions Management System</description>
+    <description>Config Server</description>
 
     <dependencies>
         <dependency>
@@ -23,19 +23,11 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-config-client</artifactId>
+            <artifactId>spring-cloud-config-server</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>cn.flizi.cloud</groupId>
-            <artifactId>common-security</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>cn.flizi.cloud</groupId>
-            <artifactId>common-swagger</artifactId>
+            <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
     </dependencies>
 
@@ -47,4 +39,5 @@
             </plugin>
         </plugins>
     </build>
+
 </project>
