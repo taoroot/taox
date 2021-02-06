@@ -20,13 +20,6 @@
 - 全局统一 USER_ID
 
 
-[线上预览地址](http://mall.flizi.cn) 
-
-```
-username: user
-password: 123456
-```
-
 # 依赖
 
 | Dependency | Version |
